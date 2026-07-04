@@ -38,12 +38,30 @@
      <div class="announce-bar" data-api="/api/announcements">
         @include('annonce.index')
      </div>
+   
      <!-- ============================================
      HEADER
      ============================================ -->
      <header class="header" id="header">
         @include('header.index')
      </header>
+       <section class="hero1">
+    <div class="overlay-card">
+        <h1>Construisez votre avenir dès aujourd'hui</h1>
+
+        <p>
+            Gérez votre parcours scolaire en toute simplicité.
+            Suivez vos résultats, consultez vos informations et
+            progressez vers la réussite.
+        </p>
+
+        <a href="#" class="btn-primary">Commencer maintenant</a>
+
+        <a href="#" class="btn-secondary">
+            Découvrir la plateforme
+        </a>
+    </div>
+</section>
      <!-- ============================================
      HERO
      ============================================ -->
