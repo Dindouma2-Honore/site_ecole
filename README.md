@@ -99,5 +99,3 @@ php artisan optimize
 
 
 
-# site_ecole
-# site_ecole
