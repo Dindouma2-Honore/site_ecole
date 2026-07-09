@@ -25,7 +25,7 @@ class AdminController extends Controller
     public function registrations()
     {
         $registrations = Registration::with('course')->orderBy('created_at', 'desc')->paginate(20);
-        return view('admin.registrations', compact('registrations'));
+        return view('admin.registrations.index', compact('registrations'));
     }
 
     public function validateRegistration($id)
@@ -36,6 +36,16 @@ class AdminController extends Controller
         $registration->save();
 
         return back()->with('success', 'Inscription validée avec succès !');
+    }
+
+    public function rejectRegistration($id)
+    {
+        $registration = Registration::findOrFail($id);
+        $registration->status = 'rejected';
+        $registration->validated_at = null;
+        $registration->save();
+
+        return back()->with('success', 'Inscription rejetée.');
     }
 
     public function deleteRegistration($id)

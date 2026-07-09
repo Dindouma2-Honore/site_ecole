@@ -76,31 +76,43 @@
         <a href="{{ route('home') }}" class="nav-link @if(request()->routeIs('home')) active @endif">Accueil</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link">L'École <span class="nav-caret">▼</span></a>
+        <a href="{{ route('espace-apprenant') }}" class="nav-link @if(request()->routeIs('espace-apprenant')) active @endif">Espace Apprenant</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">Présentation <span class="nav-caret">▼</span></a>
         <ul class="dropdown">
-            <li><a href="{{ route('ambassador') }}" class="dropdown-item">Présentation</a></li>
-            <li><a href="{{ route('admin.team') }}" class="dropdown-item">Équipe administrative</a></li>
-            <li><a href="{{ route('visit.mission') }}" class="dropdown-item">Visite / Mission</a></li>
+            <li><a href="{{ route('presentation.dossier') }}" class="dropdown-item">Dossier de l'établissement</a></li>
+            <li><a href="{{ route('presentation.histoire') }}" class="dropdown-item">Historique</a></li>
+            <li><a href="{{ route('presentation.vision-mission') }}" class="dropdown-item">Vision / Mission</a></li>
+            <li><a href="{{ route('presentation.equipe') }}" class="dropdown-item">Équipe administrative</a></li>
         </ul>
     </li>
     <li class="nav-item">
-        <a href="{{ route('courses') }}" class="nav-link @if(request()->routeIs('courses')) active @endif">Formations <span class="nav-caret">▼</span></a>
+        <a href="#" class="nav-link">Cursus scolaire <span class="nav-caret">▼</span></a>
         <ul class="dropdown">
-            <li><a href="{{ route('courses') }}?level=Maternelle" class="dropdown-item">Maternelle</a></li>
-            <li><a href="{{ route('courses') }}?level=Primaire" class="dropdown-item">Primaire</a></li>
-            <li><a href="{{ route('courses') }}?level=Collège" class="dropdown-item">Collège</a></li>
-            <li><a href="{{ route('courses') }}?level=Lycée" class="dropdown-item">Lycée</a></li>
+            <li><a href="{{ route('cursus.classes') }}" class="dropdown-item">Classes disponibles</a></li>
+            <li><a href="{{ route('cursus.admission') }}" class="dropdown-item">Conditions d'admission</a></li>
+            <li><a href="{{ route('cursus.frais') }}" class="dropdown-item">Frais de scolarité</a></li>
+            <li><a href="{{ route('cursus.disciplines') }}" class="dropdown-item">Discipline</a></li>
+            <li><a href="{{ route('cursus.reglement') }}" class="dropdown-item">Règlement intérieur</a></li>
         </ul>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('actualites.index') }}" class="nav-link @if(request()->routeIs('actualites.*')) active @endif">Actualités</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('galerie') }}" class="nav-link @if(request()->routeIs('galerie')) active @endif">Galerie</a>
     </li>
     <li class="nav-item">
         <a href="#" class="nav-link">Admissions <span class="nav-caret">▼</span></a>
         <ul class="dropdown">
-            <li><a href="{{ route('registrations') }}" class="dropdown-item">Inscriptions</a></li>
-            <li><a href="{{ route('conditions') }}" class="dropdown-item">Conditions d'adhésion</a></li>
-            <li><a href="{{ route('fees') }}" class="dropdown-item">Frais de scolarité</a></li>
+            <li><a href="{{ route('registrations') }}" class="dropdown-item">Inscription en ligne</a></li>
             <li><a href="{{ route('documents') }}" class="dropdown-item">Documents à fournir</a></li>
             <li><a href="{{ route('validation') }}" class="dropdown-item">Validation d'inscription</a></li>
         </ul>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('contact') }}" class="nav-link @if(request()->routeIs('contact')) active @endif">Contact</a>
     </li>
     <li class="nav-item">
         <a href="{{ route('dashboard') }}" class="nav-link @if(request()->routeIs('dashboard')) active @endif">Tableau de bord</a>
@@ -140,10 +152,12 @@
                 <div>
                     <h4 class="footer-col-title">Liens rapides</h4>
                     <ul class="footer-links">
-                        <li><a href="{{ route('ambassador') }}" class="footer-link">Ambassadeur</a></li>
-                        <li><a href="{{ route('courses') }}" class="footer-link">Formations</a></li>
+                        <li><a href="{{ route('presentation.dossier') }}" class="footer-link">Présentation</a></li>
+                        <li><a href="{{ route('cursus.classes') }}" class="footer-link">Cursus scolaire</a></li>
                         <li><a href="{{ route('registrations') }}" class="footer-link">Inscriptions</a></li>
-                        <li><a href="{{ route('conditions') }}" class="footer-link">Conditions</a></li>
+                        <li><a href="{{ route('cursus.admission') }}" class="footer-link">Conditions d'admission</a></li>
+                        <li><a href="{{ route('galerie') }}" class="footer-link">Galerie</a></li>
+                        <li><a href="{{ route('contact') }}" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
                 <div>
@@ -178,8 +192,9 @@
     <button class="scroll-top" id="scrollTop">↑</button>
 
     <!-- Admin Login Modal -->
-    <div class="admin-modal-overlay" id="adminModal">
-        <div class="admin-login-box">
+    <div class="admin-modal-overlay @if($errors->any()) open @endif" id="adminModal">
+        <div class="admin-login-box" style="position:relative;">
+            <button type="button" onclick="document.getElementById('adminModal').classList.remove('open')" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.2rem;color:var(--grey-mid);cursor:pointer;">&times;</button>
             <div class="admin-login-logo">🔐</div>
             <h2 class="admin-login-title">Administration</h2>
             <p class="admin-login-sub">Connectez-vous pour gérer le site</p>
@@ -187,19 +202,57 @@
                 @csrf
                 <div class="admin-form-group">
                     <label class="admin-form-label">Email</label>
-                    <input type="email" name="email" class="admin-form-input" placeholder="admin@example.com">
+                    <input type="email" name="email" class="admin-form-input" placeholder="admin@example.com" value="{{ old('email') }}">
                 </div>
                 <div class="admin-form-group">
                     <label class="admin-form-label">Mot de passe</label>
                     <input type="password" name="password" class="admin-form-input" placeholder="••••••••">
                 </div>
                 <button type="submit" class="admin-login-btn">Se connecter</button>
-                <div class="admin-login-error" id="loginError">Identifiants invalides</div>
+                <div class="admin-login-error @if($errors->any()) show @endif" id="loginError">{{ $errors->first() ?: 'Identifiants invalides' }}</div>
             </form>
         </div>
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        // Menu hamburger (mobile) - fonctionne sur toutes les pages
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('open');
+        });
+
+        // Ouverture/fermeture des sous-menus au tap sur mobile
+        document.querySelectorAll('.nav-item').forEach(function(item) {
+            var link = item.querySelector(':scope > .nav-link');
+            var hasDropdown = item.querySelector(':scope > .dropdown');
+            if (!link || !hasDropdown) return;
+
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 1024) {
+                    if (link.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    var alreadyOpen = item.classList.contains('open');
+                    document.querySelectorAll('.nav-item.open').forEach(function(other) {
+                        if (other !== item) other.classList.remove('open');
+                    });
+                    item.classList.toggle('open', !alreadyOpen);
+                }
+            });
+        });
+
+        // Ferme le menu mobile si on clique en dehors
+        document.addEventListener('click', function(e) {
+            var nav = document.querySelector('.navbar');
+            if (nav && !nav.contains(e.target)) {
+                document.getElementById('navMenu').classList.remove('open');
+                document.querySelectorAll('.nav-item.open').forEach(function(item) {
+                    item.classList.remove('open');
+                });
+            }
+        });
+    </script>
+
     @stack('scripts')
 </body>
 </html>

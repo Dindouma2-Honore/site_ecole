@@ -54,7 +54,7 @@
             </p>
             <div class="hero-actions">
                 <a href="{{ route('registrations') }}" class="btn btn-primary">📝 S'inscrire</a>
-                <a href="{{ route('ambassador') }}" class="btn btn-outline">Découvrir</a>
+                <a href="{{ route('presentation.dossier') }}" class="btn btn-outline">Découvrir</a>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -216,7 +216,7 @@
                         <span class="program-fee">{{ number_format($course->fee, 0, ',', ' ') }} FCFA</span>
                         <span class="program-fee-label">Par an</span>
                     </div>
-                    <a href="{{ route('registrations') }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.7rem;">S'inscrire</a>
+                    <a href="{{ route('registrations') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.7rem;">S'inscrire</a>
                 </div>
             </div>
             @endforeach
@@ -260,9 +260,6 @@
         });
     });
 
-    // Hamburger
-    document.getElementById('hamburger').addEventListener('click', function() {
-        document.getElementById('navMenu').classList.toggle('open');
-    });
+    // Le menu hamburger et les sous-menus mobiles sont gérés globalement dans layouts/app.blade.php
 </script>
 @endpush

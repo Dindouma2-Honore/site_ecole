@@ -65,7 +65,7 @@
                                 <select name="course_id" class="form-select" required>
                                     <option value="">Choisir...</option>
                                     @foreach($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->name }} ({{ $course->level }})</option>
+                                    <option value="{{ $course->id }}" {{ (string) $selectedCourseId === (string) $course->id ? 'selected' : '' }}>{{ $course->name }} ({{ $course->level }})</option>
                                     @endforeach
                                 </select>
                             </div>

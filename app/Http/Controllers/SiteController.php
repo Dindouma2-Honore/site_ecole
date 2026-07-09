@@ -22,38 +22,11 @@ class SiteController extends Controller
         return view('site.home', compact('ambassadors', 'courses', 'stats'));
     }
 
-    public function ambassador()
+    public function registrations(Request $request)
     {
-        $ambassadors = Ambassador::where('active', true)->get();
-        return view('site.ambassador', compact('ambassadors'));
-    }
-
-    public function visitMission()
-    {
-        return view('site.visit-mission');
-    }
-
-    public function adminTeam()
-    {
-        $team = Ambassador::where('role', 'admin')->orWhere('role', 'teacher')->get();
-        return view('site.admin-team', compact('team'));
-    }
-
-    public function conditions()
-    {
-        return view('site.conditions');
-    }
-
-    public function fees()
-    {
-        $courses = Course::all();
-        return view('site.fees', compact('courses'));
-    }
-
-    public function registrations()
-    {
-        $courses = Course::where('active', true)->get();
-        return view('site.registrations', compact('courses'));
+        $courses = Course::where('active', true)->orderBy('order')->get();
+        $selectedCourseId = $request->query('course_id');
+        return view('site.registrations', compact('courses', 'selectedCourseId'));
     }
 
     public function submitRegistration(Request $request)
@@ -73,12 +46,6 @@ class SiteController extends Controller
         $registration = Registration::create($validated + ['status' => 'pending']);
 
         return redirect()->route('validation')->with('success', 'Inscription soumise avec succès !');
-    }
-
-    public function courses()
-    {
-        $courses = Course::where('active', true)->get();
-        return view('site.courses', compact('courses'));
     }
 
     public function documents()
@@ -107,5 +74,10 @@ class SiteController extends Controller
     {
         // Vue publique du tableau de bord (simplifié)
         return view('site.public-dashboard');
+    }
+
+    public function espaceApprenant()
+    {
+        return view('site.espace-apprenant');
     }
 }
