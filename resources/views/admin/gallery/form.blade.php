@@ -7,6 +7,10 @@
     <div><h1>{{ $item->exists ? "Modifier l'élément" : 'Ajouter à la galerie' }}</h1></div>
 </div>
 
+@if($errors->any())
+<div class="admin-alert" style="background:#fdecea;border-color:#e74c3c;color:#c0392b;">⚠ {{ $errors->first() }}</div>
+@endif
+
 <div class="admin-panel" style="max-width:700px;">
     <div style="padding:28px;">
         <form action="{{ $item->exists ? route('admin.gallery.update', $item->id) : route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data">
@@ -22,7 +26,7 @@
                 <label class="admin-form-label">Type</label>
                 <select name="type" id="typeSelect" class="admin-form-input" onchange="toggleTypeFields()">
                     <option value="photo" {{ old('type', $item->type) == 'photo' ? 'selected' : '' }}>Photo</option>
-                    <option value="video" {{ old('type', $item->type) == 'video' ? 'selected' : '' }}>Vidéo (lien YouTube)</option>
+                    <option value="video" {{ old('type', $item->type) == 'video' ? 'selected' : '' }}>Vidéo</option>
                 </select>
             </div>
 
@@ -34,9 +38,24 @@
                 <input type="file" name="image" accept="image/*">
             </div>
 
-            <div class="admin-form-group" id="videoField">
-                <label class="admin-form-label">Lien YouTube</label>
-                <input type="url" name="video_url" class="admin-form-input" value="{{ old('video_url', $item->video_url) }}" placeholder="https://www.youtube.com/watch?v=...">
+            <div id="videoField">
+                <div class="admin-form-group">
+                    <label class="admin-form-label">Uploader une vidéo (depuis l'ordinateur ou le téléphone)</label>
+                    @if($item->video_file)
+                    <div style="margin-bottom:10px;">
+                        <video src="{{ Storage::url($item->video_file) }}" controls style="width:100%;max-width:320px;border-radius:8px;"></video>
+                    </div>
+                    @endif
+                    <input type="file" name="video_file" accept="video/mp4,video/quicktime,video/x-msvideo,video/webm,video/x-matroska">
+                    <p style="font-size:0.75rem;color:var(--grey-mid);margin-top:6px;">Formats acceptés : MP4, MOV, AVI, WEBM, MKV — 50 Mo maximum.</p>
+                </div>
+
+                <div style="text-align:center;color:var(--grey-mid);font-size:0.8rem;font-weight:700;margin:14px 0;">— OU —</div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label">Lien YouTube (alternative à l'upload)</label>
+                    <input type="url" name="video_url" class="admin-form-input" value="{{ old('video_url', $item->video_url) }}" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
             </div>
 
             <div class="admin-form-group">

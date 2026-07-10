@@ -26,7 +26,7 @@
         <div class="gallery-grid">
             @foreach($items as $item)
             <div class="gallery-item"
-                 onclick="openLightbox('{{ $item->type }}', '{{ $item->type === 'photo' ? Storage::url($item->image) : $item->embed_url }}', '{{ addslashes($item->title) }}')">
+                 onclick="openLightbox('{{ $item->type }}', '{{ $item->type === 'photo' ? Storage::url($item->image) : $item->embed_url }}', '{{ addslashes($item->title) }}', '{{ $item->video_source }}')">
                 @if($item->type === 'photo')
                 <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}">
                 @else
@@ -51,10 +51,12 @@
 
 @push('scripts')
 <script>
-    function openLightbox(type, url, title) {
+    function openLightbox(type, url, title, videoSource) {
         var content = document.getElementById('lightboxContent');
         if (type === 'photo') {
             content.innerHTML = '<img src="' + url + '" alt="' + title + '">';
+        } else if (videoSource === 'local') {
+            content.innerHTML = '<video src="' + url + '" controls autoplay style="width:100%;max-height:85vh;border-radius:var(--radius-md);"></video>';
         } else {
             content.innerHTML = '<iframe src="' + url + '" allowfullscreen></iframe>';
         }

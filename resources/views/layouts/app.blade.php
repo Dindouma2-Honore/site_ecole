@@ -6,6 +6,7 @@
     <title>@yield('title', 'Ambassadors School')</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     @stack('styles')
 </head>
 <body>
@@ -49,7 +50,7 @@
     </div>
 
     <!-- Announcement Bar -->
-    <div class="announce-bar">
+    {{-- <div class="announce-bar">
         <div class="container">
             <div class="announce-track">
                 @for($i = 0; $i < 4; $i++)
@@ -57,7 +58,7 @@
                 @endfor
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Header -->
     <header class="header">
@@ -79,23 +80,23 @@
         <a href="{{ route('espace-apprenant') }}" class="nav-link @if(request()->routeIs('espace-apprenant')) active @endif">Espace Apprenant</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link">Présentation <span class="nav-caret">▼</span></a>
-        <ul class="dropdown">
+        <a href="{{ route('presentation.dossier') }}" class="nav-link">A propos<span class="nav-caret"></span></a>
+        {{-- <ul class="dropdown">
             <li><a href="{{ route('presentation.dossier') }}" class="dropdown-item">Dossier de l'établissement</a></li>
             <li><a href="{{ route('presentation.histoire') }}" class="dropdown-item">Historique</a></li>
             <li><a href="{{ route('presentation.vision-mission') }}" class="dropdown-item">Vision / Mission</a></li>
             <li><a href="{{ route('presentation.equipe') }}" class="dropdown-item">Équipe administrative</a></li>
-        </ul>
+        </ul> --}}
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link">Cursus scolaire <span class="nav-caret">▼</span></a>
-        <ul class="dropdown">
+        <a href="{{ route('cursus.admission') }}"  class="nav-link">Cursus scolaire <span class="nav-caret">▼</span></a>
+        {{-- <ul class="dropdown">
             <li><a href="{{ route('cursus.classes') }}" class="dropdown-item">Classes disponibles</a></li>
             <li><a href="{{ route('cursus.admission') }}" class="dropdown-item">Conditions d'admission</a></li>
             <li><a href="{{ route('cursus.frais') }}" class="dropdown-item">Frais de scolarité</a></li>
             <li><a href="{{ route('cursus.disciplines') }}" class="dropdown-item">Discipline</a></li>
             <li><a href="{{ route('cursus.reglement') }}" class="dropdown-item">Règlement intérieur</a></li>
-        </ul>
+        </ul> --}}
     </li>
     <li class="nav-item">
         <a href="{{ route('actualites.index') }}" class="nav-link @if(request()->routeIs('actualites.*')) active @endif">Actualités</a>

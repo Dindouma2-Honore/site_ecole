@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscription en ligne · Ambassadors International School</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+            background: #f4f6fa;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER ---------- */
+        header {
+            background: #0b2a4a;
+            color: white;
+            padding: 16px 0;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: white;
+            text-decoration: none;
+        }
+        .logo span {
+            color: #f5b042;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 6px 14px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+        nav a:hover {
+            color: #f5b042;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        nav a.active {
+            color: #f5b042;
+            background: rgba(245, 176, 66, 0.12);
+        }
+
+        /* ---------- PAGE HEADER ---------- */
+        .page-header {
+            background: linear-gradient(135deg, #0b2a4a 0%, #1a3f62 100%);
+            color: white;
+            padding: 40px 0 30px 0;
+        }
+        .page-header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .page-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-top: 4px;
+        }
+
+        /* ---------- BREADCRUMB ---------- */
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 12px 0 20px 0;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .breadcrumb a {
+            color: #0b2a4a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb span {
+            color: #94a3b8;
+        }
+
+        /* ---------- MAIN GRID ---------- */
+        .inscription-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            padding-bottom: 48px;
+        }
+
+        /* ===== FORMULAIRE ===== */
+        .form-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef2f6;
+        }
+        .form-card .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .form-card .step-indicator .step-number {
+            background: #f5b042;
+            color: #0b2a4a;
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .form-card .step-indicator .step-text {
+            font-weight: 600;
+            color: #0b2a4a;
+            font-size: 1.1rem;
+        }
+        .form-card .step-indicator .step-total {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-left: auto;
+        }
+
+        .form-section {
+            margin-bottom: 24px;
+        }
+        .form-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0b2a4a;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 20px;
+            margin-bottom: 14px;
+        }
+        .form-row.three {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #334155;
+        }
+        .form-group label .required {
+            color: #dc2626;
+            margin-left: 2px;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 10px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: 0.2s;
+            background: #fafbfc;
+            color: #1e293b;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #f5b042;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(245, 176, 66, 0.15);
+            background: white;
+        }
+        .form-group input::placeholder {
+            color: #94a3b8;
+        }
+        .form-group .helper {
+            font-size: 0.78rem;
+            color: #94a3b8;
+        }
+
+        .note-obligatoire {
+            background: #fef9f0;
+            border-left: 4px solid #f5b042;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #475569;
+            margin: 16px 0 8px 0;
+        }
+        .note-obligatoire strong {
+            color: #0b2a4a;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #f5b042;
+            color: #0b2a4a;
+            padding: 12px 36px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: #f0a32e;
+            transform: scale(1.02);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #64748b;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-secondary:hover {
+            border-color: #94a3b8;
+            color: #0b2a4a;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar-right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px 22px;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        }
+        .info-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0b2a4a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-card h3 i {
+            color: #f5b042;
+        }
+        .info-card ul {
+            list-style: none;
+        }
+        .info-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.92rem;
+            color: #334155;
+        }
+        .info-card ul li:last-child {
+            border-bottom: none;
+        }
+        .info-card ul li i {
+            color: #f5b042;
+            width: 20px;
+            text-align: center;
+        }
+        .info-card ul li .check {
+            color: #16a34a;
+        }
+
+        .info-card .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.92rem;
+            color: #334155;
+        }
+        .info-card .contact-item:last-child {
+            border-bottom: none;
+        }
+        .info-card .contact-item i {
+            color: #f5b042;
+            width: 20px;
+            text-align: center;
+        }
+        .info-card .contact-item strong {
+            color: #0b2a4a;
+        }
+
+        .btn-contact-side {
+            display: inline-block;
+            margin-top: 12px;
+            background: #0b2a4a;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .btn-contact-side:hover {
+            background: #1a3f62;
+        }
+
+        .badge-protection {
+            background: #f1f6fc;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #e2eaf3;
+        }
+        .badge-protection i {
+            font-size: 1.8rem;
+            color: #f5b042;
+            margin-bottom: 6px;
+        }
+        .badge-protection h4 {
+            font-size: 1rem;
+            color: #0b2a4a;
+        }
+        .badge-protection p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .badge-online {
+            background: #0b2a4a;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .badge-online i {
+            font-size: 2rem;
+            color: #f5b042;
+            margin-bottom: 6px;
+        }
+        .badge-online h4 {
+            font-size: 1.1rem;
+        }
+        .badge-online p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: #0b2a4a;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0 20px 0;
+            margin-top: 20px;
+        }
+        footer .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        footer h4 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        footer ul {
+            list-style: none;
+        }
+        footer ul li {
+            padding: 4px 0;
+        }
+        footer ul li a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        footer ul li a:hover {
+            color: #f5b042;
+        }
+        footer .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 16px;
+            font-size: 0.85rem;
+            gap: 12px;
+        }
+        footer .footer-bottom a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        footer .footer-bottom a:hover {
+            color: #f5b042;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .inscription-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-right {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+            footer .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            nav {
+                justify-content: center;
+            }
+            nav a {
+                padding: 4px 10px;
+                font-size: 0.75rem;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .form-row.three {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-right {
+                grid-template-columns: 1fr;
+            }
+            footer .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            footer .footer-bottom a {
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .form-card {
+                padding: 20px 16px;
+            }
+            .form-card .step-indicator {
+                flex-wrap: wrap;
+            }
+            .form-card .step-indicator .step-total {
+                margin-left: 0;
+            }
+            footer .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="container">
+        <a href="#" class="logo">AMBASSADORS <span>INTERNATIONAL</span> SCHOOL</a>
+        <nav>
+            <a href="#">ACCUEIL</a>
+            <a href="#">À PROPOS</a>
+            <a href="#">FORMATIONS</a>
+            <a href="#">ACTUALITÉS</a>
+            <a href="#">GALERIE</a>
+            <a href="#" class="active">INSCRIPTION</a>
+            <a href="#">CONTACT</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-header">
+    <div class="container">
+        <h1>Inscription en ligne</h1>
+        <p>Inscrivez-vous en quelques étapes et rejoignez la communauté Ambassadors</p>
+    </div>
+</section>
+
+<!-- ===== BREADCRUMB ===== -->
+<div class="container">
+    <div class="breadcrumb">
+        <a href="#">Accueil</a>
+        <span>/</span>
+        <span style="color:#0b2a4a; font-weight:600;">Inscription en ligne</span>
+    </div>
+</div>
+
+<!-- ===== CONTENU PRINCIPAL ===== -->
+<main class="container">
+    <div class="inscription-grid">
+
+        <!-- ===== FORMULAIRE ===== -->
+        <div class="form-card">
+            <div class="step-indicator">
+                <span class="step-number">Étape 1 / 5</span>
+                <span class="step-text">Informations de l'élève</span>
+                <span class="step-total">Année scolaire 2024 - 2025</span>
+            </div>
+
+            <form>
+                <!-- Identité -->
+                <div class="form-section">
+                    <h3>Identité de l'élève</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nom <span class="required">*</span></label>
+                            <input type="text" placeholder="Entrez le nom de l'élève" />
+                        </div>
+                        <div class="form-group">
+                            <label>Prénoms <span class="required">*</span></label>
+                            <input type="text" placeholder="Entrez les prénoms de l'élève" />
+                        </div>
+                    </div>
+                    <div class="form-row three">
+                        <div class="form-group">
+                            <label>Date de naissance <span class="required">*</span></label>
+                            <input type="date" />
+                        </div>
+                        <div class="form-group">
+                            <label>Lieu de naissance <span class="required">*</span></label>
+                            <input type="text" placeholder="Entrez le lieu de naissance" />
+                        </div>
+                        <div class="form-group">
+                            <label>Genre <span class="required">*</span></label>
+                            <select>
+                                <option value="">Sélectionnez le genre</option>
+                                <option value="masculin">Masculin</option>
+                                <option value="feminin">Féminin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nationalité <span class="required">*</span></label>
+                            <select>
+                                <option value="">Sélectionnez la nationalité</option>
+                                <option value="camerounaise">Camerounaise</option>
+                                <option value="française">Française</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="form-section">
+                    <h3>Contact de l'élève</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="exemple@email.com" />
+                        </div>
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input type="tel" placeholder="+237 6 12 34 56 78" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Adresse</label>
+                            <input type="text" placeholder="Entrez l'adresse complète" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ville <span class="required">*</span></label>
+                            <select>
+                                <option value="">Sélectionnez la ville</option>
+                                <option value="yaounde">Yaoundé</option>
+                                <option value="douala">Douala</option>
+                                <option value="bafoussam">Bafoussam</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Quartier</label>
+                            <input type="text" placeholder="Entrez le quartier" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informations scolaires -->
+                <div class="form-section">
+                    <h3>Informations scolaires actuelles</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Établissement actuel</label>
+                            <input type="text" placeholder="Nom de l'établissement actuel" />
+                        </div>
+                        <div class="form-group">
+                            <label>Classe actuelle <span class="required">*</span></label>
+                            <select>
+                                <option value="">Sélectionnez la classe actuelle</option>
+                                <option value="6eme">6ème</option>
+                                <option value="5eme">5ème</option>
+                                <option value="4eme">4ème</option>
+                                <option value="3eme">3ème</option>
+                                <option value="seconde">Seconde</option>
+                                <option value="premiere">Première</option>
+                                <option value="terminale">Terminale</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Année scolaire en cours</label>
+                            <select>
+                                <option value="2023-2024" selected>2023 - 2024</option>
+                                <option value="2024-2025">2024 - 2025</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note importante -->
+                <div class="note-obligatoire">
+                    <strong><i class="fas fa-info-circle" style="color:#f5b042;"></i> Note importante</strong><br />
+                    Les champs marqués d'un astérisque (<span style="color:#dc2626;">*</span>) sont obligatoires.<br />
+                    Assurez-vous que toutes les informations fournies sont exactes.
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary"><i class="fas fa-arrow-right"></i> Suivant</button>
+                    <button type="reset" class="btn-secondary">Réinitialiser</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- ===== SIDEBAR ===== -->
+        <div class="sidebar-right">
+
+            <!-- Pourquoi Ambassadors -->
+            <div class="info-card">
+                <h3><i class="fas fa-star"></i> Pourquoi Ambassadors ?</h3>
+                <ul>
+                    <li><i class="fas fa-graduation-cap"></i> <strong>Excellence académique</strong><br />Un enseignement de qualité pour préparer les leaders de demain.</li>
+                    <li><i class="fas fa-seedling"></i> <strong>Développement global</strong><br />Nous cultivons le potentiel intellectuel, social et émotionnel de chaque élève.</li>
+                    <li><i class="fas fa-user-check"></i> <strong>Encadrement personnalisé</strong><br />Des classes à effectifs réduits et un suivi individualisé.</li>
+                    <li><i class="fas fa-shield-alt"></i> <strong>Environnement sécurisé</strong><br />Un cadre moderne, sûr et stimulant propice à l'apprentissage.</li>
+                </ul>
+            </div>
+
+            <!-- Documents à préparer -->
+            <div class="info-card">
+                <h3><i class="fas fa-file-alt"></i> Documents à préparer</h3>
+                <ul>
+                    <li><i class="fas fa-check check"></i> Acte de naissance de l'élève</li>
+                    <li><i class="fas fa-check check"></i> Bulletins scolaires des 2 dernières années</li>
+                    <li><i class="fas fa-check check"></i> Certificat de scolarité / Attestation</li>
+                    <li><i class="fas fa-check check"></i> Photocopie de la pièce d'identité du parent / tuteur</li>
+                    <li><i class="fas fa-check check"></i> Photo d'identité de l'élève</li>
+                </ul>
+            </div>
+
+            <!-- Besoin d'aide -->
+            <div class="info-card">
+                <h3><i class="fas fa-headset"></i> Besoin d'aide ?</h3>
+                <p style="color:#475569; font-size:0.92rem; margin-bottom:12px;">Notre équipe admission est à votre disposition pour vous accompagner.</p>
+                <div class="contact-item"><i class="fas fa-phone-alt"></i> <strong>+237 6 12 34 56 78</strong></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> admissions@ambassadors-school.com</div>
+                <div class="contact-item"><i class="fas fa-clock"></i> Lun - Ven : 08h00 - 16h00</div>
+                <div class="contact-item"><i class="fas fa-clock"></i> Sam : 08h00 - 12h00</div>
+                <a href="#" class="btn-contact-side"><i class="fas fa-paper-plane"></i> Nous contacter</a>
+            </div>
+
+            <!-- Protection & Sécurité -->
+            <div class="badge-protection">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Vos données sont protégées</h4>
+                <p>Nous assurons la confidentialité et la sécurité de toutes les informations que vous partagez avec nous.</p>
+            </div>
+
+            <!-- 100% en ligne -->
+            <div class="badge-online">
+                <i class="fas fa-laptop"></i>
+                <h4>Inscription 100% en ligne</h4>
+                <p>Simple, rapide et sécurisée.</p>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">À propos de nous</a></li>
+                    <li><a href="#">Formations</a></li>
+                    <li><a href="#">Actualités & Événements</a></li>
+                    <li><a href="#">Galerie</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Admissions</h4>
+                <ul>
+                    <li><a href="#">Admissions Ouvertes</a></li>
+                    <li><a href="#">Inscription en ligne</a></li>
+                    <li><a href="#">Frais de scolarité</a></li>
+                    <li><a href="#">Visite du campus</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contactez-nous</h4>
+                <ul>
+                    <li style="color:rgba(255,255,255,0.6); font-size:0.9rem;">Carrefour MEEC, Yaoundé - Cameroun</li>
+                    <li style="color:rgba(255,255,255,0.6); font-size:0.9rem;">+237 6 12 34 56 78</li>
+                    <li style="color:rgba(255,255,255,0.6); font-size:0.9rem;">info@ambassadors-school.com</li>
+                    <li style="color:rgba(255,255,255,0.6); font-size:0.9rem;">Lun - Ven : 08h00 - 16h00</li>
+                    <li style="color:rgba(255,255,255,0.6); font-size:0.9rem;">Sam : 08h00 - 12h00</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ambassadors</h4>
+                <p style="font-size:0.9rem; color:rgba(255,255,255,0.5);">Une éducation d'excellence pour former les leaders de demain.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2024 Ambassadors International School. Tous droits réservés.</span>
+            <div>
+                <a href="#">Mentions légales</a>
+                <a href="#">Confidentialité</a>
+                <a href="#">Conditions d'utilisation</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
