@@ -11,7 +11,8 @@ class CursusController extends Controller
     public function classes()
     {
         $courses = Course::where('active', true)->orderBy('order')->get();
-        return view('site.cursus.classes', compact('courses'));
+        $groupedByLevel = $courses->groupBy('level');
+        return view('site.cursus.classes', compact('courses', 'groupedByLevel'));
     }
 
     public function admission()

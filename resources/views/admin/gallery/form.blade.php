@@ -8,7 +8,7 @@
 </div>
 
 @if($errors->any())
-<div class="admin-alert" style="background:#fdecea;border-color:#e74c3c;color:#c0392b;">⚠ {{ $errors->first() }}</div>
+<div class="admin-alert" style="background:#fdecea;border-color:#e74c3c;color:#c0392b;"><i class="bi bi-exclamation-triangle"></i> {{ $errors->first() }}</div>
 @endif
 
 <div class="admin-panel" style="max-width:700px;">

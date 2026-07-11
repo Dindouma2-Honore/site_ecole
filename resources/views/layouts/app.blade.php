@@ -6,7 +6,7 @@
     <title>@yield('title', 'Ambassadors School')</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @stack('styles')
 </head>
 <body>
@@ -19,11 +19,11 @@
                 <span>{{ auth()->user()->name }}</span>
             </div>
             <div class="admin-bar-right">
-                <a href="{{ route('admin.dashboard') }}" class="admin-bar-btn">Tableau de bord</a>
-                <a href="{{ route('admin.registrations') }}" class="admin-bar-btn">Inscriptions</a>
+                <a href="{{ route('admin.dashboard') }}" class="admin-bar-btn"><i class="bi bi-speedometer2"></i> Tableau de bord</a>
+                <a href="{{ route('admin.registrations') }}" class="admin-bar-btn"><i class="bi bi-clipboard-check"></i> Inscriptions</a>
                 <form action="{{ route('admin.logout') }}" method="POST" style="display:inline;">
                     @csrf
-                    <button type="submit" class="admin-bar-btn danger">Déconnexion</button>
+                    <button type="submit" class="admin-bar-btn danger"><i class="bi bi-box-arrow-right"></i> Déconnexion</button>
                 </form>
             </div>
         </div>
@@ -34,8 +34,8 @@
     <div class="topbar">
         <div class="container topbar-inner">
             <div class="topbar-left">
-                <span class="topbar-item">📞 +237 6XX XXX XXX</span>
-                <span class="topbar-item">✉ info@ambassadors.school</span>
+                <span class="topbar-item"><i class="bi bi-telephone-fill"></i> +237 6XX XXX XXX</span>
+                <span class="topbar-item"><i class="bi bi-envelope"></i> info@ambassadors.school</span>
             </div>
             <div class="topbar-right">
                 <a href="#" class="social-link">f</a>
@@ -54,7 +54,7 @@
         <div class="container">
             <div class="announce-track">
                 @for($i = 0; $i < 4; $i++)
-                <span class="announce-item">📢 Inscriptions ouvertes pour l'année scolaire 2026-2027</span>
+                <span class="announce-item"><i class="bi bi-megaphone"></i> Inscriptions ouvertes pour l'année scolaire 2026-2027</span>
                 @endfor
             </div>
         </div>
@@ -77,26 +77,26 @@
         <a href="{{ route('home') }}" class="nav-link @if(request()->routeIs('home')) active @endif">Accueil</a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('espace-apprenant') }}" class="nav-link @if(request()->routeIs('espace-apprenant')) active @endif">Espace Apprenant</a>
+        <a href="{{ route('espace-apprenant.login') }}" class="nav-link @if(request()->routeIs('espace-apprenant.*')) active @endif">Espace Apprenant</a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('presentation.dossier') }}" class="nav-link">A propos<span class="nav-caret"></span></a>
-        {{-- <ul class="dropdown">
+        <a href="#" class="nav-link">Présentation <span class="nav-caret">▼</span></a>
+        <ul class="dropdown">
             <li><a href="{{ route('presentation.dossier') }}" class="dropdown-item">Dossier de l'établissement</a></li>
             <li><a href="{{ route('presentation.histoire') }}" class="dropdown-item">Historique</a></li>
             <li><a href="{{ route('presentation.vision-mission') }}" class="dropdown-item">Vision / Mission</a></li>
             <li><a href="{{ route('presentation.equipe') }}" class="dropdown-item">Équipe administrative</a></li>
-        </ul> --}}
+        </ul>
     </li>
     <li class="nav-item">
-        <a href="{{ route('cursus.admission') }}"  class="nav-link">Cursus scolaire <span class="nav-caret">▼</span></a>
-        {{-- <ul class="dropdown">
+        <a href="#" class="nav-link">Cursus scolaire <span class="nav-caret">▼</span></a>
+        <ul class="dropdown">
             <li><a href="{{ route('cursus.classes') }}" class="dropdown-item">Classes disponibles</a></li>
             <li><a href="{{ route('cursus.admission') }}" class="dropdown-item">Conditions d'admission</a></li>
             <li><a href="{{ route('cursus.frais') }}" class="dropdown-item">Frais de scolarité</a></li>
             <li><a href="{{ route('cursus.disciplines') }}" class="dropdown-item">Discipline</a></li>
             <li><a href="{{ route('cursus.reglement') }}" class="dropdown-item">Règlement intérieur</a></li>
-        </ul> --}}
+        </ul>
     </li>
     <li class="nav-item">
         <a href="{{ route('actualites.index') }}" class="nav-link @if(request()->routeIs('actualites.*')) active @endif">Actualités</a>
@@ -164,9 +164,9 @@
                 <div>
                     <h4 class="footer-col-title">Contacts</h4>
                     <ul class="footer-links">
-                        <li><span class="footer-link">📞 +237 6XX XXX XXX</span></li>
-                        <li><span class="footer-link">✉ info@ambassadors.school</span></li>
-                        <li><span class="footer-link">📍 Yaoundé, Cameroun</span></li>
+                        <li><span class="footer-link"><i class="bi bi-telephone-fill"></i> +237 6XX XXX XXX</span></li>
+                        <li><span class="footer-link"><i class="bi bi-envelope"></i> info@ambassadors.school</span></li>
+                        <li><span class="footer-link"><i class="bi bi-geo-alt-fill"></i> Yaoundé, Cameroun</span></li>
                     </ul>
                 </div>
                 <div>
@@ -190,13 +190,13 @@
     </footer>
 
     <!-- Scroll to Top -->
-    <button class="scroll-top" id="scrollTop">↑</button>
+    <button class="scroll-top" id="scrollTop"><i class="bi bi-arrow-up"></i></button>
 
     <!-- Admin Login Modal -->
     <div class="admin-modal-overlay @if($errors->any()) open @endif" id="adminModal">
         <div class="admin-login-box" style="position:relative;">
             <button type="button" onclick="document.getElementById('adminModal').classList.remove('open')" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.2rem;color:var(--grey-mid);cursor:pointer;">&times;</button>
-            <div class="admin-login-logo">🔐</div>
+            <div class="admin-login-logo"><i class="bi bi-shield-lock-fill"></i></div>
             <h2 class="admin-login-title">Administration</h2>
             <p class="admin-login-sub">Connectez-vous pour gérer le site</p>
             <form action="{{ route('admin.login.post') }}" method="POST">

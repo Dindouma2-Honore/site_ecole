@@ -75,9 +75,4 @@ class SiteController extends Controller
         // Vue publique du tableau de bord (simplifié)
         return view('site.public-dashboard');
     }
-
-    public function espaceApprenant()
-    {
-        return view('site.espace-apprenant');
-    }
 }

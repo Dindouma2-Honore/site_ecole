@@ -12,7 +12,7 @@
 </div>
 
 @if(session('success'))
-<div class="admin-alert">✅ {{ session('success') }}</div>
+<div class="admin-alert"><i class="bi bi-check-circle-fill"></i> {{ session('success') }}</div>
 @endif
 
 <div class="admin-panel">
@@ -60,7 +60,7 @@
                         <form action="{{ route('admin.validate', $registration->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="admin-row-btn admin-row-btn-green" title="Valider">✔ Valider</button>
+                            <button type="submit" class="admin-row-btn admin-row-btn-green" title="Valider"><i class="bi bi-check-lg"></i> Valider</button>
                         </form>
                         @endif
 
@@ -68,7 +68,7 @@
                         <form action="{{ route('admin.reject', $registration->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="admin-row-btn admin-row-btn-orange" title="Rejeter">✖ Rejeter</button>
+                            <button type="submit" class="admin-row-btn admin-row-btn-orange" title="Rejeter"><i class="bi bi-x-lg"></i> Rejeter</button>
                         </form>
                         @endif
 
@@ -76,7 +76,7 @@
                               onsubmit="return confirm('Supprimer définitivement ce dossier ?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="admin-row-btn admin-row-btn-red" title="Supprimer">🗑 Supprimer</button>
+                            <button type="submit" class="admin-row-btn admin-row-btn-red" title="Supprimer"><i class="bi bi-trash"></i> Supprimer</button>
                         </form>
                     </div>
                 </td>

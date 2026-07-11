@@ -12,7 +12,7 @@
 </div>
 
 @if(session('success'))
-<div class="admin-alert">✅ {{ session('success') }}</div>
+<div class="admin-alert"><i class="bi bi-check-circle-fill"></i> {{ session('success') }}</div>
 @endif
 
 <div class="admin-panel">
@@ -35,7 +35,7 @@
                     @if($item->type === 'photo' && $item->image)
                     <img src="{{ Storage::url($item->image) }}" style="width:60px;height:44px;object-fit:cover;border-radius:6px;">
                     @else
-                    <span style="font-size:1.4rem;">🎬</span>
+                    <span style="font-size:1.4rem;"><i class="bi bi-camera-reels"></i></span>
                     @endif
                 </td>
                 <td><strong>{{ $item->title }}</strong></td>

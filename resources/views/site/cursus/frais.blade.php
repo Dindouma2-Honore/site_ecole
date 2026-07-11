@@ -3,8 +3,9 @@
 @section('title', 'Frais de scolarité')
 
 @section('content')
-<section class="subpage-hero">
-    <div class="container">
+<section class="subpage-hero" style="background-image:url('../images/2.png'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));"></div>
+    <div class="container" style="position:relative;">
         <div class="section-tag" style="color:var(--gold);">Cursus scolaire</div>
         <h1>Frais de <span style="color:var(--gold-light);">scolarité</span></h1>
         <p>Le détail des frais par classe pour l'année scolaire en cours</p>

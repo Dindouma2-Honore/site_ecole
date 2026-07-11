@@ -15,25 +15,25 @@
     <div class="container">
 
         @if(session('success'))
-        <div class="admin-alert" style="max-width:800px;margin:0 auto 30px;">✅ {{ session('success') }}</div>
+        <div class="admin-alert" style="max-width:800px;margin:0 auto 30px;"><i class="bi bi-check-circle-fill"></i> {{ session('success') }}</div>
         @endif
 
         <div class="contact-layout">
             <div class="contact-info-card">
                 <div class="contact-info-item">
-                    <span class="contact-info-icon">📍</span>
+                    <span class="contact-info-icon"><i class="bi bi-geo-alt-fill"></i></span>
                     <div><strong>Adresse</strong><span>Yaoundé, Cameroun</span></div>
                 </div>
                 <div class="contact-info-item">
-                    <span class="contact-info-icon">📞</span>
+                    <span class="contact-info-icon"><i class="bi bi-telephone-fill"></i></span>
                     <div><strong>Téléphone</strong><span>+237 6XX XXX XXX</span></div>
                 </div>
                 <div class="contact-info-item">
-                    <span class="contact-info-icon">✉️</span>
+                    <span class="contact-info-icon"><i class="bi bi-envelope"></i></span>
                     <div><strong>Email</strong><span>contact@ambassadors.school</span></div>
                 </div>
                 <div class="contact-info-item">
-                    <span class="contact-info-icon">🕐</span>
+                    <span class="contact-info-icon"><i class="bi bi-clock-fill"></i></span>
                     <div><strong>Horaires</strong><span>Lundi - Vendredi, 7h30 - 16h30</span></div>
                 </div>
             </div>

@@ -19,7 +19,7 @@
     <div class="container">
         <div style="max-width:900px;margin:0 auto;">
             <div style="background:var(--gold-pale);border-radius:var(--radius-lg);padding:24px;margin-bottom:40px;display:flex;align-items:center;gap:16px;border-left:4px solid var(--gold);">
-                <span style="font-size:2rem;">📋</span>
+                <span style="font-size:2rem;"><i class="bi bi-clipboard-check"></i></span>
                 <div>
                     <strong style="color:var(--royal-blue);font-size:1.1rem;">Liste récapitulative</strong>
                     <p style="color:var(--text-body);font-size:0.9rem;margin:0;">Tous les documents doivent être fournis en original et en copie</p>
@@ -29,14 +29,14 @@
             <div style="display:grid;gap:20px;">
                 @php
                 $documents = [
-                    ['name' => 'Acte de naissance', 'desc' => 'Copie légalisée de l\'acte de naissance de l\'élève', 'icon' => '📄', 'required' => true],
-                    ['name' => 'Bulletins scolaires', 'desc' => 'Bulletins des deux dernières années (pour les élèves ayant déjà été scolarisés)', 'icon' => '📊', 'required' => true],
-                    ['name' => 'Certificat de vaccination', 'desc' => 'Certificat médical attestant des vaccinations à jour', 'icon' => '💉', 'required' => true],
-                    ['name' => 'Photos d\'identité', 'desc' => '4 photos d\'identité récentes de l\'élève', 'icon' => '📸', 'required' => true],
-                    ['name' => 'Certificat de scolarité', 'desc' => 'Certificat de l\'établissement précédent (pour les transferts)', 'icon' => '🏫', 'required' => true],
-                    ['name' => 'Pièce d\'identité des parents', 'desc' => 'Copie de la CNI ou du passeport des parents/tuteurs', 'icon' => '🪪', 'required' => true],
-                    ['name' => 'Justificatif de domicile', 'desc' => 'Facture d\'électricité ou d\'eau de moins de 3 mois', 'icon' => '🏠', 'required' => true],
-                    ['name' => 'Certificat médical', 'desc' => 'Certificat médical de non-contre-indication à la pratique sportive', 'icon' => '🩺', 'required' => false],
+                    ['name' => 'Acte de naissance', 'desc' => 'Copie légalisée de l\'acte de naissance de l\'élève', 'icon' => '<i class="bi bi-file-earmark-text"></i>', 'required' => true],
+                    ['name' => 'Bulletins scolaires', 'desc' => 'Bulletins des deux dernières années (pour les élèves ayant déjà été scolarisés)', 'icon' => '<i class="bi bi-bar-chart-fill"></i>', 'required' => true],
+                    ['name' => 'Certificat de vaccination', 'desc' => 'Certificat médical attestant des vaccinations à jour', 'icon' => '<i class="bi bi-shield-plus"></i>', 'required' => true],
+                    ['name' => 'Photos d\'identité', 'desc' => '4 photos d\'identité récentes de l\'élève', 'icon' => '<i class="bi bi-camera-fill"></i>', 'required' => true],
+                    ['name' => 'Certificat de scolarité', 'desc' => 'Certificat de l\'établissement précédent (pour les transferts)', 'icon' => '<i class="bi bi-building"></i>', 'required' => true],
+                    ['name' => 'Pièce d\'identité des parents', 'desc' => 'Copie de la CNI ou du passeport des parents/tuteurs', 'icon' => '<i class="bi bi-person-vcard-fill"></i>', 'required' => true],
+                    ['name' => 'Justificatif de domicile', 'desc' => 'Facture d\'électricité ou d\'eau de moins de 3 mois', 'icon' => '<i class="bi bi-house-fill"></i>', 'required' => true],
+                    ['name' => 'Certificat médical', 'desc' => 'Certificat médical de non-contre-indication à la pratique sportive', 'icon' => '<i class="bi bi-heart-pulse-fill"></i>', 'required' => false],
                 ];
                 @endphp
 
@@ -61,7 +61,7 @@
 
             <!-- Checklist interactive -->
             <div style="margin-top:40px;background:var(--royal-blue);border-radius:var(--radius-lg);padding:32px;color:white;">
-                <h3 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:20px;">✅ Checklist de préparation</h3>
+                <h3 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:20px;"><i class="bi bi-check-circle-fill"></i> Checklist de préparation</h3>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
                     <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 12px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);">
                         <input type="checkbox" style="width:18px;height:18px;accent-color:var(--gold);">
@@ -89,7 +89,7 @@
                     </label>
                 </div>
                 <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-                    <span style="opacity:0.7;font-size:0.85rem;">📌 Tous les documents doivent être au format A4</span>
+                    <span style="opacity:0.7;font-size:0.85rem;"><i class="bi bi-pin-angle-fill"></i> Tous les documents doivent être au format A4</span>
                     <span id="checklistProgress" style="font-weight:700;color:var(--gold-light);">0/6 préparés</span>
                 </div>
             </div>

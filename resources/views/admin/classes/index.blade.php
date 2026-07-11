@@ -12,7 +12,7 @@
 </div>
 
 @if(session('success'))
-<div class="admin-alert">✅ {{ session('success') }}</div>
+<div class="admin-alert"><i class="bi bi-check-circle-fill"></i> {{ session('success') }}</div>
 @endif
 
 <div class="admin-panel">

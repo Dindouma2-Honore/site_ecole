@@ -21,6 +21,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if ($guard === 'apprenant') {
+                    return redirect()->route('espace-apprenant.dashboard');
+                }
+
                 return redirect(RouteServiceProvider::HOME);
             }
         }

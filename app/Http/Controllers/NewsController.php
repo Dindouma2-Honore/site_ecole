@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Course;
+use App\Models\Evenement;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -24,7 +25,15 @@ class NewsController extends Controller
 
         $news = $query->paginate(9)->withQueryString();
 
-        return view('site.actualites.index', compact('news', 'courses'));
+        $featured = News::where('active', true)->orderBy('published_at', 'desc')->first();
+
+        $evenements = Evenement::where('active', true)
+            ->where('event_date', '>=', now()->toDateString())
+            ->orderBy('event_date')
+            ->take(4)
+            ->get();
+
+        return view('site.actualites.index', compact('news', 'courses', 'featured', 'evenements'));
     }
 
     public function show($id)

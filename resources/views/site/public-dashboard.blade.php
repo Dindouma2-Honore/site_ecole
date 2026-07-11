@@ -21,7 +21,7 @@
         <!-- Dashboard admin -->
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:40px;">
             <div style="background:var(--white);padding:24px;border-radius:var(--radius-md);text-align:center;box-shadow:var(--shadow-sm);">
-                <div style="font-size:2.5rem;margin-bottom:8px;">📋</div>
+                <div style="font-size:2.5rem;margin-bottom:8px;"><i class="bi bi-clipboard-check"></i></div>
                 <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--royal-blue);">{{ $stats['total_registrations'] ?? 0 }}</div>
                 <div style="font-size:0.75rem;color:var(--grey-mid);text-transform:uppercase;letter-spacing:0.08em;">Total inscriptions</div>
             </div>
@@ -31,12 +31,12 @@
                 <div style="font-size:0.75rem;color:var(--grey-mid);text-transform:uppercase;letter-spacing:0.08em;">En attente</div>
             </div>
             <div style="background:var(--white);padding:24px;border-radius:var(--radius-md);text-align:center;box-shadow:var(--shadow-sm);">
-                <div style="font-size:2.5rem;margin-bottom:8px;">✅</div>
+                <div style="font-size:2.5rem;margin-bottom:8px;"><i class="bi bi-check-circle-fill"></i></div>
                 <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:#2ecc71;">{{ $stats['validated'] ?? 0 }}</div>
                 <div style="font-size:0.75rem;color:var(--grey-mid);text-transform:uppercase;letter-spacing:0.08em;">Validées</div>
             </div>
             <div style="background:var(--white);padding:24px;border-radius:var(--radius-md);text-align:center;box-shadow:var(--shadow-sm);">
-                <div style="font-size:2.5rem;margin-bottom:8px;">❌</div>
+                <div style="font-size:2.5rem;margin-bottom:8px;"><i class="bi bi-x-circle-fill"></i></div>
                 <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:#e74c3c;">{{ $stats['rejected'] ?? 0 }}</div>
                 <div style="font-size:0.75rem;color:var(--grey-mid);text-transform:uppercase;letter-spacing:0.08em;">Non retenues</div>
             </div>
@@ -44,7 +44,7 @@
 
         <div style="background:var(--white);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-sm);">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
-                <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--royal-blue);">📊 Dernières inscriptions</h3>
+                <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--royal-blue);"><i class="bi bi-bar-chart-fill"></i> Dernières inscriptions</h3>
                 <a href="{{ route('admin.registrations') }}" class="btn btn-blue" style="padding:8px 20px;font-size:0.75rem;">Voir tout</a>
             </div>
             <div style="overflow-x:auto;">
@@ -85,7 +85,7 @@
         @else
         <!-- Espace public -->
         <div style="text-align:center;max-width:600px;margin:0 auto;">
-            <div style="font-size:5rem;margin-bottom:20px;">🔐</div>
+            <div style="font-size:5rem;margin-bottom:20px;"><i class="bi bi-shield-lock-fill"></i></div>
             <h2 style="font-family:var(--font-display);font-size:2rem;color:var(--royal-blue);margin-bottom:12px;">
                 Accès restreint
             </h2>
@@ -94,11 +94,11 @@
                 Veuillez vous connecter pour accéder au tableau de bord.
             </p>
             <button class="btn btn-primary" onclick="document.getElementById('adminModal').classList.add('open')">
-                🔑 Se connecter
+                <i class="bi bi-key-fill"></i> Se connecter
             </button>
             <div style="margin-top:20px;background:var(--gold-pale);border-radius:var(--radius-md);padding:16px;border-left:4px solid var(--gold);">
                 <p style="font-size:0.85rem;color:var(--text-body);margin:0;">
-                    💡 Vous êtes un parent ? Utilisez le formulaire de <a href="{{ route('validation') }}" style="color:var(--royal-blue);font-weight:600;">suivi d'inscription</a> pour suivre votre dossier.
+                    <i class="bi bi-lightbulb-fill"></i> Vous êtes un parent ? Utilisez le formulaire de <a href="{{ route('validation') }}" style="color:var(--royal-blue);font-weight:600;">suivi d'inscription</a> pour suivre votre dossier.
                 </p>
             </div>
         </div>

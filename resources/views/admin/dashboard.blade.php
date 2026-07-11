@@ -12,7 +12,7 @@
 </div>
 
 @if(session('success'))
-<div class="admin-alert">✅ {{ session('success') }}</div>
+<div class="admin-alert"><i class="bi bi-check-circle-fill"></i> {{ session('success') }}</div>
 @endif
 
 <div class="admin-stats-grid">
@@ -37,7 +37,7 @@
 <div class="admin-panel">
     <div class="admin-panel-header">
         <h3>Dernières inscriptions</h3>
-        <a href="{{ route('admin.registrations') }}" style="color:var(--royal-blue);font-weight:700;font-size:0.85rem;text-decoration:none;">Voir tout →</a>
+        <a href="{{ route('admin.registrations') }}" style="color:var(--royal-blue);font-weight:700;font-size:0.85rem;text-decoration:none;">Voir tout <i class="bi bi-arrow-right"></i></a>
     </div>
 
     @if($recent->count())

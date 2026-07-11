@@ -19,13 +19,19 @@
             </div>
 
             <div class="admin-form-group">
-                <label class="admin-form-label">Icône (emoji)</label>
-                <input type="text" name="icon" class="admin-form-input" value="{{ old('icon', $discipline->icon) }}" placeholder="📐" maxlength="10">
+                <label class="admin-form-label">Icône (nom de classe Bootstrap Icons)</label>
+                <input type="text" name="icon" class="admin-form-input" value="{{ old('icon', $discipline->icon) }}" placeholder="bi-calculator" maxlength="40">
+                <p style="font-size:0.75rem;color:var(--grey-mid);margin-top:6px;">Exemples : bi-calculator, bi-book, bi-globe-americas, bi-flask, bi-palette. Liste complète sur <a href="https://icons.getbootstrap.com" target="_blank">icons.getbootstrap.com</a>.</p>
             </div>
 
             <div class="admin-form-group">
                 <label class="admin-form-label">Description</label>
                 <textarea name="description" class="admin-form-input" rows="3">{{ old('description', $discipline->description) }}</textarea>
+            </div>
+
+            <div class="admin-form-group">
+                <label class="admin-form-label">Coefficient</label>
+                <input type="number" step="0.5" min="0.5" name="coefficient" class="admin-form-input" value="{{ old('coefficient', $discipline->coefficient ?? 1) }}">
             </div>
 
             <div class="admin-form-group">

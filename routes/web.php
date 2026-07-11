@@ -6,6 +6,8 @@ use App\Http\Controllers\CursusController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ApprenantAuthController;
+use App\Http\Controllers\EspaceApprenantController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\StaffController;
@@ -15,6 +17,12 @@ use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\NewsAdminController;
 use App\Http\Controllers\Admin\GalleryAdminController;
 use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\EvenementController;
+use App\Http\Controllers\Admin\EmploiTempsController;
+use App\Http\Controllers\Admin\EvaluationController;
+use App\Http\Controllers\Admin\DevoirController;
+use App\Http\Controllers\Admin\FactureController;
+use App\Http\Controllers\Admin\NotificationApprenantController;
 
 Route::get('/', [SiteController::class, 'home'])->name('home');
 
@@ -55,8 +63,27 @@ Route::get('/galerie', [GalleryController::class, 'index'])->name('galerie');
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact/envoyer', [ContactController::class, 'submit'])->name('contact.submit');
 
-// Espace Apprenant (placeholder)
-Route::get('/espace-apprenant', [SiteController::class, 'espaceApprenant'])->name('espace-apprenant');
+// Espace Apprenant (portail élève - accès protégé par login)
+Route::prefix('espace-apprenant')->name('espace-apprenant.')->group(function () {
+    Route::middleware('guest:apprenant')->group(function () {
+        Route::get('/login', [ApprenantAuthController::class, 'showLogin'])->name('login');
+        Route::post('/login', [ApprenantAuthController::class, 'login'])->name('login.post');
+    });
+    Route::post('/logout', [ApprenantAuthController::class, 'logout'])->middleware('auth:apprenant')->name('logout');
+
+    Route::middleware('auth:apprenant')->group(function () {
+        Route::get('/', [EspaceApprenantController::class, 'dashboard'])->name('dashboard');
+        Route::get('/emploi-du-temps', [EspaceApprenantController::class, 'emploiTemps'])->name('emploi-temps');
+        Route::get('/notes', [EspaceApprenantController::class, 'notes'])->name('notes');
+        Route::get('/devoirs', [EspaceApprenantController::class, 'devoirs'])->name('devoirs');
+        Route::post('/devoirs/{id}/soumettre', [EspaceApprenantController::class, 'soumettreDevoir'])->name('devoirs.soumettre');
+        Route::get('/finances', [EspaceApprenantController::class, 'finances'])->name('finances');
+        Route::get('/notifications', [EspaceApprenantController::class, 'notifications'])->name('notifications');
+        Route::put('/notifications/{id}/lu', [EspaceApprenantController::class, 'markNotificationRead'])->name('notifications.read');
+        Route::get('/profil', [EspaceApprenantController::class, 'profil'])->name('profil');
+        Route::put('/profil', [EspaceApprenantController::class, 'updateProfil'])->name('profil.update');
+    });
+});
 
 // Tableau de bord public (suivi d'inscription)
 Route::get('/tableau-administration', [SiteController::class, 'dashboard'])->name('dashboard');
@@ -96,6 +123,28 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Galerie
         Route::resource('gallery', GalleryAdminController::class)->except(['show']);
+
+        // Événements (sidebar Actualités)
+        Route::resource('evenements', EvenementController::class)->except(['show']);
+
+        // Backend Espace Apprenant
+        Route::resource('emploi-temps', EmploiTempsController::class)->except(['show']);
+
+        Route::resource('evaluations', EvaluationController::class)->except(['show']);
+        Route::get('/evaluations/{id}/notes', [EvaluationController::class, 'notes'])->name('evaluations.notes');
+        Route::post('/evaluations/{id}/notes', [EvaluationController::class, 'saveNotes'])->name('evaluations.notes.save');
+
+        Route::resource('devoirs', DevoirController::class)->except(['show']);
+        Route::get('/devoirs/{id}/soumissions', [DevoirController::class, 'soumissions'])->name('devoirs.soumissions');
+        Route::put('/soumissions/{id}/noter', [DevoirController::class, 'noterSoumission'])->name('soumissions.noter');
+
+        Route::resource('factures', FactureController::class);
+        Route::post('/factures/{id}/paiement', [FactureController::class, 'addPaiement'])->name('factures.paiement');
+
+        Route::get('/notifications', [NotificationApprenantController::class, 'index'])->name('notifications.index');
+        Route::get('/notifications/create', [NotificationApprenantController::class, 'create'])->name('notifications.create');
+        Route::post('/notifications', [NotificationApprenantController::class, 'store'])->name('notifications.store');
+        Route::delete('/notifications/{id}', [NotificationApprenantController::class, 'destroy'])->name('notifications.destroy');
 
         // Messages de contact
         Route::get('/contact-messages', [ContactMessageController::class, 'index'])->name('contact-messages.index');

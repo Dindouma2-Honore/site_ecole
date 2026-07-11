@@ -53,13 +53,15 @@ class DisciplineController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'icon' => 'nullable|string|max:10',
+            'icon' => 'nullable|string|max:40',
+            'coefficient' => 'nullable|numeric|min:0.5|max:10',
             'order' => 'nullable|integer',
             'active' => 'nullable|boolean',
         ]);
 
         $validated['active'] = $request->boolean('active');
         $validated['order'] = $validated['order'] ?? 0;
+        $validated['coefficient'] = $validated['coefficient'] ?? 1;
 
         return $validated;
     }

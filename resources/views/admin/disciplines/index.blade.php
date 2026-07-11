@@ -12,7 +12,7 @@
 </div>
 
 @if(session('success'))
-<div class="admin-alert">✅ {{ session('success') }}</div>
+<div class="admin-alert"><i class="bi bi-check-circle-fill"></i> {{ session('success') }}</div>
 @endif
 
 <div class="admin-panel">
@@ -30,7 +30,7 @@
         <tbody>
             @foreach($disciplines as $discipline)
             <tr>
-                <td style="font-size:1.3rem;">{{ $discipline->icon }}</td>
+                <td style="font-size:1.3rem;color:var(--royal-blue);"><i class="bi {{ $discipline->icon ?: 'bi-book' }}"></i></td>
                 <td><strong>{{ $discipline->name }}</strong></td>
                 <td style="font-size:0.85rem;color:var(--grey-mid);">{{ \Illuminate\Support\Str::limit($discipline->description, 60) }}</td>
                 <td>

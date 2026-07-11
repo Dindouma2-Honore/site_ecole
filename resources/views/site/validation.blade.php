@@ -12,7 +12,7 @@
         <p style="color:rgba(255,255,255,0.7);font-size:1.1rem;max-width:600px;margin-top:16px;">
             Suivez l'état de votre inscription en temps réel
             @if(session('success'))
-            <span style="display:block;color:var(--gold-light);margin-top:8px;">✅ {{ session('success') }}</span>
+            <span style="display:block;color:var(--gold-light);margin-top:8px;"><i class="bi bi-check-circle-fill"></i> {{ session('success') }}</span>
             @endif
         </p>
     </div>
@@ -24,7 +24,7 @@
             <!-- Formulaire de recherche -->
             <div style="background:var(--white);border-radius:var(--radius-xl);padding:40px;box-shadow:var(--shadow-sm);border:1px solid var(--grey-light);">
                 <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--royal-blue);margin-bottom:20px;">
-                    🔍 Suivre votre inscription
+                    <i class="bi bi-search"></i> Suivre votre inscription
                 </h3>
                 <p style="color:var(--grey-mid);margin-bottom:24px;">
                     Entrez votre adresse email pour connaître l'état de votre dossier
@@ -40,7 +40,7 @@
                 @if(isset($registration))
                 <div style="margin-top:32px;padding-top:32px;border-top:1px solid var(--grey-light);">
                     <h4 style="font-size:1rem;color:var(--royal-blue);margin-bottom:16px;">
-                        📋 Dossier de {{ $registration->first_name }} {{ $registration->last_name }}
+                        <i class="bi bi-clipboard-check"></i> Dossier de {{ $registration->first_name }} {{ $registration->last_name }}
                     </h4>
                     
                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
@@ -67,7 +67,7 @@
                         @elseif($registration->status == 'validated')
                         <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
                             <span style="width:12px;height:12px;border-radius:50%;background:#2ecc71;display:inline-block;"></span>
-                            <span style="font-weight:700;color:#2ecc71;font-size:1.1rem;">✅ Inscription validée !</span>
+                            <span style="font-weight:700;color:#2ecc71;font-size:1.1rem;"><i class="bi bi-check-circle-fill"></i> Inscription validée !</span>
                         </div>
                         <p style="color:var(--grey-mid);font-size:0.85rem;margin-top:8px;">
                             Félicitations ! Votre inscription est validée. Vous recevrez prochainement les informations pour la rentrée.
@@ -78,7 +78,7 @@
                         @elseif($registration->status == 'rejected')
                         <div style="display:flex;align-items:center;gap:10px;margin-top:4px;">
                             <span style="width:12px;height:12px;border-radius:50%;background:#e74c3c;display:inline-block;"></span>
-                            <span style="font-weight:700;color:#e74c3c;font-size:1.1rem;">❌ Dossier non retenu</span>
+                            <span style="font-weight:700;color:#e74c3c;font-size:1.1rem;"><i class="bi bi-x-circle-fill"></i> Dossier non retenu</span>
                         </div>
                         <p style="color:var(--grey-mid);font-size:0.85rem;margin-top:8px;">
                             Nous vous invitons à contacter l'administration pour plus d'informations.
@@ -92,7 +92,7 @@
             <!-- Renvoi d'approbation -->
             <div style="margin-top:32px;background:var(--white);border-radius:var(--radius-xl);padding:32px;border:1px solid var(--grey-light);">
                 <h4 style="font-family:var(--font-display);font-size:1.2rem;color:var(--royal-blue);margin-bottom:12px;">
-                    📨 Renvoi d'approbation
+                    <i class="bi bi-envelope-paper-fill"></i> Renvoi d'approbation
                 </h4>
                 <p style="color:var(--grey-mid);font-size:0.9rem;margin-bottom:16px;">
                     Si vous n'avez pas reçu votre email d'approbation, vous pouvez en demander le renvoi.
@@ -100,12 +100,12 @@
                 <form action="#" method="POST" style="display:flex;gap:12px;">
                     @csrf
                     <input type="email" name="resend_email" class="form-input" placeholder="votre@email.com" required style="flex:1;">
-                    <button type="submit" class="btn btn-blue" style="white-space:nowrap;">📧 Renvoyer</button>
+                    <button type="submit" class="btn btn-blue" style="white-space:nowrap;"><i class="bi bi-envelope-at-fill"></i> Renvoyer</button>
                 </form>
             </div>
 
             <div style="margin-top:24px;background:var(--gold-pale);border-radius:var(--radius-md);padding:16px 20px;border-left:4px solid var(--gold);display:flex;gap:12px;align-items:flex-start;">
-                <span style="font-size:1.2rem;">💡</span>
+                <span style="font-size:1.2rem;"><i class="bi bi-lightbulb-fill"></i></span>
                 <div>
                     <strong style="color:var(--royal-blue);font-size:0.9rem;">Besoin d'aide ?</strong>
                     <p style="color:var(--text-body);font-size:0.85rem;margin:0;">

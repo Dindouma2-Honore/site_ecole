@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Ambassador;
 use App\Models\ContentPage;
+use App\Models\Registration;
 
 class PresentationController extends Controller
 {
     public function dossier()
     {
         $page = ContentPage::where('slug', 'dossier-etablissement')->first();
-        return view('site.presentation.dossier', compact('page'));
+
+        $stats = [
+            'students' => Registration::where('status', 'validated')->count(),
+            'teachers' => Ambassador::where('role', 'teacher')->count(),
+        ];
+
+        return view('site.presentation.dossier', compact('page', 'stats'));
     }
 
     public function histoire()

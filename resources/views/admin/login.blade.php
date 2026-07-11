@@ -12,7 +12,7 @@
     <div class="admin-login-box" style="position:relative;">
         <a href="{{ route('home') }}" style="position:absolute;top:16px;left:16px;color:var(--grey-mid);font-size:0.8rem;text-decoration:none;">&larr; Retour au site</a>
 
-        <div class="admin-login-logo">🔐</div>
+        <div class="admin-login-logo"><i class="bi bi-shield-lock-fill"></i></div>
         <h2 class="admin-login-title">Administration</h2>
         <p class="admin-login-sub">Connectez-vous pour gérer le site</p>
 

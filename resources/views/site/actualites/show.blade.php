@@ -19,7 +19,7 @@
             @endif
             <p>{{ $item->content }}</p>
             <div style="margin-top:30px;">
-                <a href="{{ route('actualites.index') }}" class="btn-secondary" style="margin-top:0;">← Retour aux actualités</a>
+                <a href="{{ route('actualites.index') }}" class="btn-secondary" style="margin-top:0;"><i class="bi bi-arrow-left"></i> Retour aux actualités</a>
             </div>
         </div>
     </div>

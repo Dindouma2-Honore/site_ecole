@@ -9,7 +9,7 @@ class Discipline extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'icon', 'order', 'active'];
+    protected $fillable = ['name', 'description', 'icon', 'order', 'active', 'coefficient'];
 
     protected $casts = [
         'active' => 'boolean',
