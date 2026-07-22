@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\SchoolClass;
 use App\Models\Course;
+
 use App\Models\ContentPage;
 
 class ProgramController extends Controller
@@ -12,20 +13,30 @@ class ProgramController extends Controller
     public function classes()
     {
         $classes = SchoolClass::where('active', true)->orderBy('order')->get();
+        
         $groupedByCycle = $classes->groupBy('cycle');
-        return view('site.cursus.classes', compact('classes', 'groupedByCycle'));
+        return view('site.cursus.classes', compact('classes','courses', 'groupedByCycle'));
     }
 
-    public function admission()
-    {
-        $classes = SchoolClass::where('active', true)->orderBy('order')->get();
-        return view('site.cursus.admission', compact('classes'));
-    }
+ public function admission()
+{
+    $classes = SchoolClass::where('active', true)
+        ->orderBy('order')
+        ->get();
+
+    $courses = Course::orderBy('name')->get();
+
+    return view(
+        'site.cursus.admission',
+        compact('classes', 'courses')
+    );
+}
 
     public function frais()
     {
         $classes = SchoolClass::where('active', true)->orderBy('order')->get();
-        return view('site.cursus.frais', compact('classes'));
+        $courses = Course::orderBy('name')->get();
+        return view('site.cursus.frais', compact('classes','courses'));
     }
 
     public function disciplines()

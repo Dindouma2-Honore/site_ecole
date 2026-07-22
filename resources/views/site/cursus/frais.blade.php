@@ -33,7 +33,7 @@
                         <td><strong style="color:var(--royal-blue);">{{ $course->name }}</strong></td>
                         <td>{{ $course->level }}</td>
                         <td>{{ number_format($course->fee, 0, ',', ' ') }} FCFA</td>
-                        <td><a href="{{ route('registrations') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:6px 14px;font-size:0.72rem;">S'inscrire</a></td>
+                        <td><a href="{{ route('public.registration.create') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:6px 14px;font-size:0.72rem;">S'inscrire</a></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -3,21 +3,19 @@
 @section('title', 'Validation d\'Inscription')
 
 @section('content')
-<section class="page-header" style="background:linear-gradient(135deg, #0a2463, #2952a3);padding:80px 0 60px;position:relative;">
-    <div class="container" style="position:relative;z-index:2;">
-        <div class="section-tag" style="color:var(--gold);">Validation</div>
-        <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--white);line-height:1.1;">
-            Validation <span style="color:var(--gold-light);">d'Inscription</span>
-        </h1>
-        <p style="color:rgba(255,255,255,0.7);font-size:1.1rem;max-width:600px;margin-top:16px;">
-            Suivez l'état de votre inscription en temps réel
-            @if(session('success'))
-            <span style="display:block;color:var(--gold-light);margin-top:8px;"><i class="bi bi-check-circle-fill"></i> {{ session('success') }}</span>
-            @endif
-        </p>
-    </div>
-</section>
 
+
+<section class="subpage-hero"
+        style="background-image:url('/images/1.png'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));">
+        </div>
+        <div class="container" style="position:relative;">
+            <div class="section-tag" style="color:var(--gold);">Validation</div>
+            <h1>Validation <span style="color:var(--gold-light);">d'inscription</span></h1>
+            <p> Suivez l'état de votre inscription en temps réel
+                </p>
+        </div>
+    </section>
 <section style="padding:80px 0;background:var(--off-white);">
     <div class="container">
         <div style="max-width:800px;margin:0 auto;">
@@ -29,7 +27,8 @@
                 <p style="color:var(--grey-mid);margin-bottom:24px;">
                     Entrez votre adresse email pour connaître l'état de votre dossier
                 </p>
-                <form action="{{ route('validation.check') }}" method="POST">
+                {{-- <form action="{{ route('validation.checkStatus') }}" method="POST"> --}}
+                <form action="" method="POST">
                     @csrf
                     <div style="display:flex;gap:12px;">
                         <input type="email" name="email" class="form-input" placeholder="votre@email.com" required style="flex:1;">

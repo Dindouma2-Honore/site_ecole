@@ -16,7 +16,7 @@
 
 <section class="content-block" style="background:var(--off-white);">
     <div class="container">
-        @if($courses->count())
+        @if(isset($courses) && $courses->count())
         <div class="class-grid">
             @foreach($courses as $course)
             <div class="class-card">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="class-card-footer">
                     <span style="font-size:0.8rem;color:var(--grey-mid);">Places limitées</span>
-                    <a href="{{ route('registrations') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;">S'inscrire</a>
+                    <a href="{{ route('public.registration.create') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;">S'inscrire</a>
                 </div>
             </div>
             @endforeach
