@@ -13,7 +13,7 @@ class ProgramController extends Controller
     public function classes()
     {
         $classes = SchoolClass::where('active', true)->orderBy('order')->get();
-        
+         $courses = Course::orderBy('name')->get();
         $groupedByCycle = $classes->groupBy('cycle');
         return view('site.cursus.classes', compact('classes','courses', 'groupedByCycle'));
     }

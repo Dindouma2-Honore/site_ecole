@@ -53,7 +53,7 @@
 
             <div style="display:flex;gap:12px;margin-top:20px;">
                 <button type="submit" class="admin-login-btn" style="width:auto;padding:10px 24px;">Enregistrer</button>
-                <a href="{{ route('admin.actualites.index') }}" class="admin-row-btn" style="padding:10px 24px;background:var(--grey-light);">Annuler</a>
+                <a href="{{ route('admin.events.index') }}" class="admin-row-btn" style="padding:10px 24px;background:var(--grey-light);">Annuler</a>
             </div>
         </form>
     </div>

@@ -34,6 +34,8 @@ class RegistrationController extends Controller
         return view('admin.registrations.show', compact('registration'));
     }
 
+
+    
     public function updateStatus(Request $request, $id)
     {
         $registration = Registration::findOrFail($id);

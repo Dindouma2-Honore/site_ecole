@@ -3,7 +3,7 @@
 @section('title', 'Inscription en ligne')
 
 @section('content')
-<section class="reg-hero" style="background-image:url('/images/1.png'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+<section class="reg-hero" style="background-image:url('/images/18.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
 
     <div class="container">
         <div class="section-tag" style="color:var(--gold);">Inscription en ligne</div>

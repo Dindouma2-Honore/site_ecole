@@ -6,9 +6,9 @@
 <div class="admin-topbar">
     <div>
         <h1>Événements à venir</h1>
-        <p>{{ $evenements->count() }} événement(s)</p>
+        <p>{{ $evenement->count() }} événement(s)</p>
     </div>
-    <a href="{{ route('admin.evenements.create') }}" class="admin-logout-btn" style="background:var(--royal-blue);border-color:var(--royal-blue);color:#fff;width:auto;">+ Ajouter</a>
+    <a href="{{ route('admin.events.create') }}" class="admin-logout-btn" style="background:var(--royal-blue);border-color:var(--royal-blue);color:#fff;width:auto;">+ Ajouter</a>
 </div>
 
 @if(session('success'))
@@ -16,7 +16,7 @@
 @endif
 
 <div class="admin-panel">
-    @if($evenements->count())
+    @if($evenement->count())
     <table class="admin-table">
         <thead>
             <tr>
@@ -29,21 +29,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($evenements as $evenement)
+            @foreach($evenement as $event)
             <tr>
-                <td><strong>{{ $evenement->icon }} {{ $evenement->title }}</strong></td>
-                <td>{{ $evenement->event_date->format('d/m/Y') }}</td>
-                <td>{{ $evenement->event_time }}</td>
-                <td>{{ $evenement->location }}</td>
+                <td><strong>{{ $event->icon }}  {{ $event->title }}</strong></td>
+                <td>{{ $event->event_date}}</td>
+                <td>{{ $event->event_time }}</td>
+                <td>{{ $event->location }}</td>
                 <td>
-                    <span class="admin-badge-status {{ $evenement->active ? 'validated' : 'rejected' }}">
-                        {{ $evenement->active ? 'Visible' : 'Masqué' }}
+                    <span class="admin-badge-status {{ $event->active ? 'validated' : 'rejected' }}">
+                        {{ $event->active ? 'Visible' : 'Masqué' }}
                     </span>
                 </td>
                 <td>
                     <div style="display:flex;gap:6px;">
-                        <a href="{{ route('admin.evenements.edit', $evenement->id) }}" class="admin-row-btn admin-row-btn-green">Modifier</a>
-                        <form action="{{ route('admin.evenements.destroy', $evenement->id) }}" method="POST" onsubmit="return confirm('Supprimer cet événement ?');">
+                        <a href="{{ route('admin.events.edit', $event->id) }}" class="admin-row-btn admin-row-btn-green">Modifier</a>
+                        <form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" onsubmit="return confirm('Supprimer cet événement ?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="admin-row-btn admin-row-btn-red">Supprimer</button>

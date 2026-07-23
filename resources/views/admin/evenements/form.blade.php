@@ -9,7 +9,7 @@
 
 <div class="admin-panel" style="max-width:650px;">
     <div style="padding:28px;">
-        <form action="{{ $evenement->exists ? route('admin.evenements.update', $evenement->id) : route('admin.evenements.store') }}" method="POST">
+        <form action="{{ $evenement->exists ? route('admin.events.update', $evenement->id) : route('admin.events.store') }}" method="POST">
             @csrf
             @if($evenement->exists) @method('PUT') @endif
 
@@ -45,7 +45,7 @@
 
             <div style="display:flex;gap:12px;margin-top:20px;">
                 <button type="submit" class="admin-login-btn" style="width:auto;padding:10px 24px;">Enregistrer</button>
-                <a href="{{ route('admin.evenements.index') }}" class="admin-row-btn" style="padding:10px 24px;background:var(--grey-light);">Annuler</a>
+                <a href="{{ route('admin.events.index') }}" class="admin-row-btn" style="padding:10px 24px;background:var(--grey-light);">Annuler</a>
             </div>
         </form>
     </div>

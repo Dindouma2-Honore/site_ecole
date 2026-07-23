@@ -27,8 +27,8 @@
                 <p style="color:var(--grey-mid);margin-bottom:24px;">
                     Entrez votre adresse email pour connaître l'état de votre dossier
                 </p>
-                {{-- <form action="{{ route('validation.checkStatus') }}" method="POST"> --}}
-                <form action="" method="POST">
+                <form action="{{ route('public.registration.check') }}" method="POST">
+                
                     @csrf
                     <div style="display:flex;gap:12px;">
                         <input type="email" name="email" class="form-input" placeholder="votre@email.com" required style="flex:1;">

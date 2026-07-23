@@ -58,7 +58,9 @@ class RegistrationController extends Controller
         $documents = $validated['documents'] ?? [];
         unset($validated['documents']);
 
-        $registration = Registration::create($validated + ['status' => 'nouvelle']);
+        $registration = Registration::create(
+    $validated + ['status' => 'pending']
+);
 
         foreach ($documents as $type => $file) {
             if ($file) {

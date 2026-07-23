@@ -12,13 +12,13 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::orderBy('start_date', 'desc')->get();
-        return view('admin.events.index', compact('events'));
+        $evenement = Event::orderBy('start_date', 'desc')->get();
+        return view('admin.evenements.index', compact('evenement'));
     }
 
     public function create()
     {
-        return view('admin.events.form', ['event' => new Event()]);
+        return view('admin.evenements.form', ['evenement' => new Event()]);
     }
 
     public function store(Request $request)
@@ -26,7 +26,7 @@ class EventController extends Controller
         $data = $this->validateData($request);
         $data['slug'] = Str::slug($data['title']) . '-' . Str::random(4);
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('events', 'public');
+            $data['image'] = $request->file('image')->store('evenements', 'public');
         }
         Event::create($data);
         return redirect()->route('admin.events.index')->with('success', 'Événement ajouté avec succès.');
@@ -34,7 +34,7 @@ class EventController extends Controller
 
     public function edit($id)
     {
-        return view('admin.events.form', ['event' => Event::findOrFail($id)]);
+        return view('admin.evenements.form', ['evenement' => Event::findOrFail($id)]);
     }
 
     public function update(Request $request, $id)
@@ -43,7 +43,7 @@ class EventController extends Controller
         $data = $this->validateData($request);
         if ($request->hasFile('image')) {
             if ($event->image) Storage::disk('public')->delete($event->image);
-            $data['image'] = $request->file('image')->store('events', 'public');
+            $data['image'] = $request->file('image')->store('evenements', 'public');
         }
         $event->update($data);
         return redirect()->route('admin.events.index')->with('success', 'Événement mis à jour avec succès.');

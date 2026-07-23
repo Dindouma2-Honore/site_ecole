@@ -3,18 +3,21 @@
 @section('title', 'Documents à Fournir')
 
 @section('content')
-<section class="page-header" style="background-image:url('/images/1.png'), linear-gradient(135deg, #0d1f4a, #0a2463);padding:80px 0 60px;position:relative;">
-    <div class="container" style="position:relative;z-index:2;">
-        <div class="section-tag" style="color:var(--gold);">Documents</div>
+
+ <section class="subpage-hero"
+        style="background-image:url('/images/18.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));">
+        </div>
+        <div class="container" style="position:relative;">
+           <div class="section-tag" style="color:var(--gold);">Documents</div>
         <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--white);line-height:1.1;">
             Documents <span style="color:var(--gold-light);">à Fournir</span>
         </h1>
         <p style="color:rgba(255,255,255,0.7);font-size:1.1rem;max-width:600px;margin-top:16px;">
             La liste complète des documents nécessaires pour l'inscription
         </p>
-    </div>
-</section>
-
+        </div>
+    </section>
 <section style="padding:80px 0;background:var(--white);">
     <div class="container">
         <div style="max-width:900px;margin:0 auto;">
@@ -42,7 +45,9 @@
 
                 @foreach($documents as $doc)
                 <div style="background:var(--off-white);border-radius:var(--radius-md);padding:20px 24px;display:flex;gap:16px;align-items:center;border:1px solid var(--grey-light);transition:var(--transition);">
-                    <span style="font-size:2rem;flex-shrink:0;">{{ $doc['icon'] }}</span>
+                    <span style="font-size:2rem;flex-shrink:0;">{!! $doc['icon'] !!} </span>
+    
+
                     <div style="flex:1;">
                         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
                             <h4 style="color:var(--royal-blue);font-size:1rem;">{{ $doc['name'] }}</h4>

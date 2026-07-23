@@ -607,7 +607,7 @@ ul {
   opacity: 1;
 }
 .hero-slide:nth-child(1) {
-  background-image: url('../images/1.png'), linear-gradient(
+  background-image: url('../images/1.jpg'), linear-gradient(
     135deg,
     #0a2463 0%,
     #1a3a7a 40%,
@@ -615,7 +615,7 @@ ul {
   );
 }
 .hero-slide:nth-child(2) {
-  background-image: url('../images/2.png'), linear-gradient(
+  background-image: url('../images/20.jpg'), linear-gradient(
     135deg,
     #0d1f4a 0%,
     #0a2463 50%,
@@ -2691,9 +2691,12 @@ body.admin-mode [data-editable]:hover::after {
   color: var(--white);
   display: flex;
   flex-direction: column;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
 }
 
 .admin-sidebar-brand {
@@ -2786,6 +2789,7 @@ body.admin-mode [data-editable]:hover::after {
 .admin-main {
   flex: 1;
   min-width: 0;
+  margin-left: 260px;
   padding: 36px 40px;
 }
 
@@ -2941,7 +2945,7 @@ body.admin-mode [data-editable]:hover::after {
 @media (max-width: 900px) {
   .admin-shell { flex-direction: column; }
   .admin-sidebar { width: 100%; height: auto; position: relative; }
-  .admin-main { padding: 24px 18px; }
+  .admin-main { padding: 24px 18px; margin-left: 0; }
   .admin-table { display: block; overflow-x: auto; }
 }
 
@@ -3005,7 +3009,6 @@ nav[role="navigation"] span[aria-current="page"] span {
   color: var(--white);
   border: none;
 }
-
 /* ============================================
    SUBPAGES: HERO + SUB-NAVIGATION
    ============================================ */
