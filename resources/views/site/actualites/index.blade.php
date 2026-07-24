@@ -3,8 +3,8 @@
 @section('title', 'Actualités & Événements')
 
 @section('content')
-    @if ($featured && !request('course_id'))
-        {{-- DEBUG --}}
+    {{-- @if ($featured && !request('course_id'))
+       
         <div style="background:yellow;padding:10px;margin:10px 0;border:2px solid red;">
             <p><strong>DEBUG FEATURED</strong></p>
             <p>Image path: {{ $featured->image }}</p>
@@ -22,7 +22,7 @@
         <div class="news-featured">
             <!-- ... votre code existant ... -->
         </div>
-    @endif
+    @endif --}}
     <section class="subpage-hero"
         style="background-image:url('/images/18.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));">
@@ -120,12 +120,28 @@
                                 style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #eef2f6;">
                                 <!-- Image de l'événement -->
                                 @if ($evenement->image)
+                                    <!-- Date de l'événement -->
                                     <div
-                                        style="width:55px;height:55px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#f0f4f8;border:2px solid var(--royal-blue-light);">
-                                        <img src="{{ asset('storage/' . $evenement->image) }}"
-                                            alt="{{ $evenement->title }}"
-                                            style="width:100%;height:100%;object-fit:cover;display:block;"
-                                            onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'bi bi-calendar-event\' style=\'font-size:1.5rem;color:var(--royal-blue);\'></i>';">
+                                        style="
+                                            width:55px;
+                                            height:55px;
+                                            border-radius:15px;
+                                            flex-shrink:0;
+                                            background:var(--royal-blue-light);
+                                            border:2px solid var(--royal-blue);
+                                            display:flex;
+                                            flex-direction:column;
+                                            align-items:center;
+                                            justify-content:center;
+                                            color:#fff;
+                                            font-weight:700;
+                                        ">
+                                        <span style="font-size:1.2rem;line-height:1;">
+                                            {{ \Carbon\Carbon::parse($evenement->start_date)->format('d') }}
+                                        </span>
+                                        <span style="font-size:0.65rem;text-transform:uppercase;">
+                                            {{ \Carbon\Carbon::parse($evenement->start_date)->translatedFormat('M') }}
+                                        </span>
                                     </div>
                                 @else
                                     <div

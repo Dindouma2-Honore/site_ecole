@@ -9,7 +9,7 @@
 
 <div class="admin-panel" style="max-width:750px;">
     <div style="padding:28px;">
-        <form action="{{ $item->exists ? route('admin.actualites.update', $item->id) : route('admin.actualites.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ $item->exists ? route('admin.news.update', $item->id) : route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if($item->exists) @method('PUT') @endif
 
@@ -30,7 +30,7 @@
 
             <div class="admin-form-group">
                 <label class="admin-form-label">Contenu</label>
-                <textarea name="content" class="admin-form-input" rows="6" required>{{ old('content', $item->content) }}</textarea>
+                <textarea name="body" class="admin-form-input" rows="6" required>{{ old('body', $item->body) }}</textarea>
             </div>
 
             <div class="admin-form-group">
@@ -53,7 +53,7 @@
 
             <div style="display:flex;gap:12px;margin-top:20px;">
                 <button type="submit" class="admin-login-btn" style="width:auto;padding:10px 24px;">Enregistrer</button>
-                <a href="{{ route('admin.actualites.index') }}" class="admin-row-btn" style="padding:10px 24px;background:var(--grey-light);">Annuler</a>
+                <a href="{{ route('admin.news.index') }}" class="admin-row-btn" style="padding:10px 24px;background:var(--grey-light);">Annuler</a>
             </div>
         </form>
     </div>

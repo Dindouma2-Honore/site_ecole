@@ -8,7 +8,7 @@
         <h1>Actualités & Événements</h1>
         <p>{{ $news->count() }} publication(s)</p>
     </div>
-    <a href="{{ route('admin.events.create') }}" class="admin-logout-btn" style="background:var(--royal-blue);border-color:var(--royal-blue);color:#fff;width:auto;">+ Publier une actualité</a>
+    <a href="{{ route('admin.news.create') }}" class="admin-logout-btn" style="background:var(--royal-blue);border-color:var(--royal-blue);color:#fff;width:auto;">+ Publier une actualité</a>
 </div>
 
 @if(session('success'))
@@ -40,8 +40,8 @@
                 </td>
                 <td>
                     <div style="display:flex;gap:6px;">
-                        <a href="{{ route('admin.events.edit', $item->id) }}" class="admin-row-btn admin-row-btn-green">Modifier</a>
-                        <form action="{{ route('admin.events.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Supprimer cette actualité ?');">
+                        <a href="{{ route('admin.news.edit', $item->id) }}" class="admin-row-btn admin-row-btn-green">Modifier</a>
+                        <form action="{{ route('admin.news.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Supprimer cette actualité ?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="admin-row-btn admin-row-btn-red">Supprimer</button>

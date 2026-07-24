@@ -7,6 +7,7 @@ use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\Course;
 
 class NewsController extends Controller
 {
@@ -18,7 +19,8 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('admin.news.form', ['item' => new News()]);
+        $courses = Course::all();
+        return view('admin.news.form', ['item' => new News(), 'courses' => $courses]);
     }
 
     public function store(Request $request)
@@ -36,7 +38,8 @@ class NewsController extends Controller
 
     public function edit($id)
     {
-        return view('admin.news.form', ['item' => News::findOrFail($id)]);
+        $courses = Course::all();
+        return view('admin.news.form', ['item' => News::findOrFail($id), 'courses' => $courses]);
     }
 
     public function update(Request $request, $id)
