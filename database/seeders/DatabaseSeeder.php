@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
 
         // ==================== ADMIN ====================
         $admin = User::firstOrCreate(
-            ['email' => 'admin@ambassadors.school'],
+            ['email' => 'admin@ambassador.com'],
             ['name' => 'Administrateur', 'password' => 'admin1234', 'role' => 'admin']
         );
 
@@ -151,8 +151,8 @@ class DatabaseSeeder extends Seeder
 
         // ==================== APPRENANTS DE DÉMO (5) ====================
         $learnersData = [
-            ['first' => 'Joel', 'last' => 'Leukeu', 'gender' => 'M', 'parent' => ['name' => 'joel Leukeu', 'email' => 'leukeu@gmail.com', 'phone' => '+237 677 11 22 33']],
-            ['first' => 'Sarah', 'last' => 'Mballa', 'gender' => 'F', 'parent' => ['name' => 'Dindouma', 'email' => 'dindouma@gmail.com', 'phone' => '+237 673 52 52 78']],
+            ['first' => 'Joel', 'last' => 'Leukeu', 'gender' => 'M', 'parent' => ['name' => 'Marceline Leukeu', 'email' => 'marceline.leukeu@gmail.com', 'phone' => '+237 677 11 22 33']],
+            ['first' => 'Sarah', 'last' => 'Mballa', 'gender' => 'F', 'parent' => ['name' => 'Bernard Mballa', 'email' => 'bernard.mballa@gmail.com', 'phone' => '+237 677 22 33 44']],
             ['first' => 'David', 'last' => 'Tchamba', 'gender' => 'M', 'parent' => ['name' => 'Christine Tchamba', 'email' => 'christine.tchamba@gmail.com', 'phone' => '+237 677 33 44 55']],
             ['first' => 'Grace', 'last' => 'Ondoa', 'gender' => 'F', 'parent' => ['name' => 'Marceline Leukeu', 'email' => 'marceline.leukeu@gmail.com', 'phone' => '+237 677 11 22 33']],
             ['first' => 'Kevin', 'last' => 'Njoya', 'gender' => 'M', 'parent' => ['name' => 'Alain Njoya', 'email' => 'alain.njoya@gmail.com', 'phone' => '+237 677 44 55 66']],
@@ -162,11 +162,11 @@ class DatabaseSeeder extends Seeder
         $parentsCreated = [];
         foreach ($learnersData as $i => $data) {
             $matricule = 'AMB2025-' . str_pad((string) ($i + 1), 4, '0', STR_PAD_LEFT);
-            $email = Str::slug($data['first'] . '.' . $data['last'], '.') . '@ambassador.com';
+            $email = Str::slug($data['first'] . '.' . $data['last'], '.') . '@ambassadors.school';
 
             $user = User::firstOrCreate(
                 ['email' => $email],
-                ['name' => $data['first'] . ' ' . $data['last'], 'password' => '1234', 'role' => 'apprenant']
+                ['name' => $data['first'] . ' ' . $data['last'], 'password' => 'apprenant1234', 'role' => 'apprenant']
             );
 
             $learner = Learner::firstOrCreate(

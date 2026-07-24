@@ -3,22 +3,24 @@
 @section('title', 'Galerie Photos / Vidéos')
 
 @section('content')
-<section class="subpage-hero"  style="background-image:url('/images/1.png'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
-     <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));">
-    <div class="container">
-        <div class="section-tag" style="color:var(--gold);">Vie scolaire</div>
-        <h1>Galerie <span style="color:var(--gold-light);">Photos / Vidéos</span></h1>
-        <p>Revivez les temps forts de la vie de notre établissement</p>
-    </div>
-</section>
+<section class="subpage-hero"
+        style="background-image:url('/images/1.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));">
+        </div>
+        <div class="container" style="position:relative;">
+            <div class="section-tag" style="color:var(--gold);">Vie scolaire</div>
+            <h1>Galerie <span style="color:var(--gold-light);">Photos / Vidéos</span></h1>
+            <p>Revivez les temps forts de la vie de notre établissement</p>
+        </div>
+    </section>
 
 <section class="content-block" style="background:var(--off-white);">
     <div class="container">
-        @if($categories->count())
+        @if($albums->count())
         <div class="gallery-tabs" style="justify-content:center;">
-            <a href="{{ route('public.gallery.index')}}" class="gallery-tab @if(!request('category')) active @endif">Tout</a>
-            @foreach($categories as $category)
-            <a href="{{ route('public.gallery.index', ['category' => $category]) }}" class="gallery-tab @if(request('category') == $category) active @endif">{{ $category }}</a>
+            <a href="{{ route('public.gallery.index') }}" class="gallery-tab @if(!request('album')) active @endif">Tout</a>
+            @foreach($albums as $album)
+            <a href="{{ route('public.gallery.index', ['album' => $album]) }}" class="gallery-tab @if(request('album') == $album) active @endif">{{ $album }}</a>
             @endforeach
         </div>
         @endif
@@ -27,9 +29,9 @@
         <div class="gallery-grid">
             @foreach($items as $item)
             <div class="gallery-item"
-                 onclick="openLightbox('{{ $item->type }}', '{{ $item->type === 'photo' ? Storage::url($item->image) : $item->embed_url }}', '{{ addslashes($item->title) }}', '{{ $item->video_source }}')">
+                 onclick="openLightbox('{{ $item->type }}', '{{ $item->type === 'photo' ? Storage::url($item->media_path) : $item->embed_url }}', '{{ addslashes($item->title) }}', '{{ $item->video_source }}')">
                 @if($item->type === 'photo')
-                <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}">
+                <img src="{{ Storage::url($item->media_path) }}" alt="{{ $item->title }}">
                 @else
                 <div class="gallery-video-thumb">▶</div>
                 <span class="gallery-play-badge">Vidéo</span>

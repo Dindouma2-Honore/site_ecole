@@ -3,7 +3,8 @@
 @section('title', 'Inscription en ligne')
 
 @section('content')
-<section class="reg-hero">
+<section class="reg-hero" style="background-image:url('/images/18.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+
     <div class="container">
         <div class="section-tag" style="color:var(--gold);">Inscription en ligne</div>
         <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,2.6rem);font-weight:700;color:var(--white);line-height:1.2;">
@@ -61,7 +62,7 @@
         <div class="reg-layout">
             <!-- Formulaire -->
             <div class="reg-form-card">
-                <form action="{{  route('public.registration.store') }}" method="POST" id="regForm">
+                <form action="{{ route('public.registration.store') }}" method="POST" id="regForm" enctype="multipart/form-data">
                     @csrf
 
                     <!-- Étape 1 -->
@@ -86,10 +87,10 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Classe souhaitée</label>
-                                <select name="course_id" class="form-select" required>
+                                <select name="class_souhaitee_id" class="form-select" required>
                                     <option value="">Choisir...</option>
-                                    @foreach($courses as $course)
-                                    <option value="{{ $course->id }}" {{ (string) old('course_id', $selectedCourseId) === (string) $course->id ? 'selected' : '' }}>{{ $course->name }} ({{ $course->level }})</option>
+                                    @foreach($classes as $classe)
+                                    <option value="{{ $classe->id }}" {{ (string) old('class_souhaitee_id', $selectedClassId) === (string) $classe->id ? 'selected' : '' }}>{{ $classe->name }} ({{ $classe->level }})</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -130,6 +131,10 @@
                                 <input type="tel" name="parent_phone" class="form-input" value="{{ old('parent_phone') }}" required>
                             </div>
                         </div>
+                        <div class="form-group" style="margin-top:14px;">
+                            <label class="form-label">Email du parent / tuteur</label>
+                            <input type="email" name="parent_email" class="form-input" value="{{ old('parent_email') }}" required>
+                        </div>
 
                         <div class="step-nav">
                             <button type="button" class="btn btn-outline" onclick="prevStep(2)"><i class="bi bi-arrow-left"></i> Retour</button>
@@ -144,13 +149,23 @@
                         <p style="color:var(--grey-mid);font-size:0.88rem;margin-bottom:16px;">
                             Merci de préparer les documents suivants. Ils seront à déposer (physiquement ou par email) une fois votre pré-inscription en ligne validée par notre équipe.
                         </p>
-                        <ul class="reg-doc-checklist">
-                            <li><i class="bi bi-check-circle-fill"></i> Acte de naissance de l'élève</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Bulletins scolaires des 2 dernières années</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Certificat de scolarité / Attestation</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Photocopie de la pièce d'identité du parent / tuteur</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Photo d'identité de l'élève</li>
-                        </ul>
+                        <p style="color:var(--grey-mid);font-size:0.85rem;margin-bottom:8px;">Tous les documents sont optionnels à ce stade et peuvent être complétés plus tard, mais les fournir maintenant accélère le traitement de votre dossier.</p>
+                        <div class="form-group">
+                            <label class="form-label"><i class="bi bi-file-earmark-text"></i> Acte de naissance de l'élève</label>
+                            <input type="file" name="documents[acte_naissance]">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label"><i class="bi bi-file-earmark-text"></i> Bulletin scolaire</label>
+                            <input type="file" name="documents[bulletin]">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label"><i class="bi bi-image"></i> Photo d'identité de l'élève</label>
+                            <input type="file" name="documents[photo]" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label"><i class="bi bi-file-earmark-medical"></i> Certificat médical (optionnel)</label>
+                            <input type="file" name="documents[certificat_medical]">
+                        </div>
 
                         <div class="step-nav">
                             <button type="button" class="btn btn-outline" onclick="prevStep(3)"><i class="bi bi-arrow-left"></i> Retour</button>
@@ -169,7 +184,7 @@
                         <div class="reg-recap">
                             <div class="reg-recap-row"><span>Élève</span><span id="recapName">—</span></div>
                             <div class="reg-recap-row"><span>Email</span><span id="recapEmail">—</span></div>
-                            <div class="reg-recap-row"><span>Classe souhaitée</span><span id="recapCourse">—</span></div>
+                            <div class="reg-recap-row"><span>Classe souhaitée</span><span id="recapClasse">—</span></div>
                             <div class="reg-recap-row"><span>Parent / tuteur</span><span id="recapParent">—</span></div>
                         </div>
 
@@ -265,7 +280,7 @@
             const form = document.getElementById('regForm');
             document.getElementById('recapName').textContent = form.first_name.value + ' ' + form.last_name.value;
             document.getElementById('recapEmail').textContent = form.email.value;
-            document.getElementById('recapCourse').textContent = form.course_id.options[form.course_id.selectedIndex]?.text || '—';
+            document.getElementById('recapClasse').textContent = form.class_souhaitee_id.options[form.class_souhaitee_id.selectedIndex]?.text || '—';
             document.getElementById('recapParent').textContent = form.parent_name.value;
         }
 

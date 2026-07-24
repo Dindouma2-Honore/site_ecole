@@ -3,7 +3,7 @@
 @section('title', 'Formations')
 
 @section('content')
-<section class="subpage-hero" style="background-image:url('/images/1.png'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+<section class="subpage-hero" style="background-image:url('/images/12.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
     <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));"></div>
     <div class="container" style="position:relative;">
         <div class="section-tag" style="color:var(--gold);">Nos formations</div>
@@ -24,17 +24,17 @@
         <div class="level-cards-grid">
             @php
                 $categories = [
-                    'Maternelle' => ['age' => '3 - 5 ans', 'icon' => 'bi-flower2', 'desc' => "Un environnement bienveillant et stimulant pour éveiller la curiosité et développer les compétences de base.", 'items' => ['Éveil & découvertes', 'Développement socio-émotionnel', 'Langage & communication', 'Activités créatives et motrices']],
-                    'Primaire' => ['age' => '6 - 11 ans', 'icon' => 'bi-book', 'desc' => "Une base solide de connaissances fondamentales, avec un apprentissage actif qui développe la pensée critique.", 'items' => ['Français, Anglais, Mathématiques', 'Sciences & Technologie', 'Éducation à la citoyenneté', 'Clubs & projets d\'élèves']],
-                    'Collège' => ['age' => '12 - 14 ans', 'icon' => 'bi-mortarboard', 'desc' => "Un enseignement exigeant préparant aux examens nationaux, tout en développant leadership et autonomie.", 'items' => ['Sciences, Lettres, Langues', 'Préparation BEPC', 'Développement personnel', 'Clubs & activités parascolaires']],
-                    'Lycée' => ['age' => '15 - 17 ans', 'icon' => 'bi-globe-americas', 'desc' => "Des parcours et partenariats offrant une ouverture sur le monde et des opportunités d'études supérieures.", 'items' => ['Préparation Baccalauréat', 'Orientation universitaire', 'Échanges & partenariats', 'Développement du leadership']],
+                    'maternelle' => ['label' => 'Maternelle', 'age' => '3 - 5 ans', 'icon' => 'bi-flower2', 'desc' => "Un environnement bienveillant et stimulant pour éveiller la curiosité et développer les compétences de base.", 'items' => ['Éveil & découvertes', 'Développement socio-émotionnel', 'Langage & communication', 'Activités créatives et motrices']],
+                    'primaire' => ['label' => 'Primaire', 'age' => '6 - 11 ans', 'icon' => 'bi-book', 'desc' => "Une base solide de connaissances fondamentales, avec un apprentissage actif qui développe la pensée critique.", 'items' => ['Français, Anglais, Mathématiques', 'Sciences & Technologie', 'Éducation à la citoyenneté', 'Clubs & projets d\'élèves']],
+                    'secondaire' => ['label' => 'Secondaire', 'age' => '12 - 17 ans', 'icon' => 'bi-mortarboard', 'desc' => "Un enseignement exigeant préparant aux examens nationaux, tout en développant leadership et autonomie.", 'items' => ['Sciences, Lettres, Langues', 'Préparation BEPC / Baccalauréat', 'Développement personnel', 'Clubs & activités parascolaires']],
+                    'international' => ['label' => 'Programmes Internationaux', 'age' => 'Tous niveaux', 'icon' => 'bi-globe-americas', 'desc' => "Des parcours et partenariats offrant une ouverture sur le monde et des opportunités d'études supérieures.", 'items' => ['Cambridge Curriculum', 'IGCSE / A-Levels', 'Échanges & partenariats', 'Orientation universitaire internationale']],
                 ];
             @endphp
 
-            @foreach($categories as $level => $info)
+            @foreach($categories as $cycle => $info)
             <div class="level-card">
                 <div class="level-card-icon"><i class="bi {{ $info['icon'] }}"></i></div>
-                <div class="level-card-name">{{ $level }}</div>
+                <div class="level-card-name">{{ $info['label'] }}</div>
                 <div class="level-card-age">{{ $info['age'] }}</div>
                 <p class="level-card-desc">{{ $info['desc'] }}</p>
                 <ul class="level-checklist">
@@ -43,19 +43,18 @@
                     @endforeach
                 </ul>
 
-                @if(isset($groupedByLevel[$level]) && $groupedByLevel[$level]->count())
+                @if(isset($groupedByCycle[$cycle]) && $groupedByCycle[$cycle]->count())
                 <div style="margin-bottom:14px;">
-                    @foreach($groupedByLevel[$level] as $course)
+                    @foreach($groupedByCycle[$cycle] as $classe)
                     <div style="font-size:0.78rem;color:var(--royal-blue);font-weight:700;margin-bottom:4px;">
-                        <i class="bi bi-dot"></i>{{ $course->name }} — {{ number_format($course->fee, 0, ',', ' ') }} FCFA/an
+                        <i class="bi bi-dot"></i>{{ $classe->name }} — {{ number_format($classe->fee, 0, ',', ' ') }} FCFA/an
                     </div>
                     @endforeach
                 </div>
                 @endif
 
-<a href="{{ route('public.programs.admission') }}" class="level-card-btn">
-    En savoir plus <i class="bi bi-arrow-right"></i>
-</a>            </div>
+                <a href="{{ route('public.programs.admission') }}" class="level-card-btn">En savoir plus <i class="bi bi-arrow-right"></i></a>
+            </div>
             @endforeach
         </div>
     </div>

@@ -7,27 +7,17 @@ use App\Models\Registration;
 use App\Models\RegistrationDocument;
 use App\Models\SchoolClass;
 use Illuminate\Http\Request;
-use App\Models\Course;
 use Illuminate\Support\Facades\Storage;
 
 class RegistrationController extends Controller
 {
-    public function create()
-{
-    $classes = SchoolClass::where('active', true)
-        ->orderBy('order')
-        ->get();
+    public function create(Request $request)
+    {
+        $classes = SchoolClass::where('active', true)->orderBy('order')->get();
+        $selectedClassId = $request->query('class_id');
 
-    $courses = Course::orderBy('name')->get();
-
-    $selectedCourseId = request('course_id');
-
-    return view('site.registrations', compact(
-        'classes',
-        'courses',
-        'selectedCourseId'
-    ));
-}
+        return view('site.registrations', compact('classes', 'selectedClassId'));
+    }
 
     public function store(Request $request)
     {

@@ -21,12 +21,33 @@
             </div>
 
             <div class="admin-form-group">
-                <label class="admin-form-label">Niveau</label>
-                <select name="level" class="admin-form-input" required>
-                    @foreach(['Maternelle', 'Primaire', 'Collège', 'Lycée'] as $level)
-                    <option value="{{ $level }}" {{ old('level', $classe->level) == $level ? 'selected' : '' }}>{{ $level }}</option>
+                <label class="admin-form-label">Cycle</label>
+                <select name="cycle" class="admin-form-input" required>
+                    @foreach(['maternelle' => 'Maternelle', 'primaire' => 'Primaire', 'secondaire' => 'Secondaire', 'international' => 'International'] as $value => $label)
+                    <option value="{{ $value }}" {{ old('cycle', $classe->cycle) == $value ? 'selected' : '' }}>{{ $label }}</option>
                     @endforeach
                 </select>
+            </div>
+
+            <div class="admin-form-group">
+                <label class="admin-form-label">Niveau (libellé libre)</label>
+                <input type="text" name="level" class="admin-form-input" value="{{ old('level', $classe->level) }}" placeholder="Ex: Collège, Lycée">
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                <div class="admin-form-group">
+                    <label class="admin-form-label">Année scolaire</label>
+                    <select name="academic_year_id" class="admin-form-input">
+                        <option value="">Non assignée</option>
+                        @foreach($academicYears as $year)
+                        <option value="{{ $year->id }}" {{ old('academic_year_id', $classe->academic_year_id) == $year->id ? 'selected' : '' }}>{{ $year->label }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-form-label">Capacité (nombre de places)</label>
+                    <input type="number" name="capacity" min="1" class="admin-form-input" value="{{ old('capacity', $classe->capacity ?? 30) }}">
+                </div>
             </div>
 
             <div class="admin-form-group">

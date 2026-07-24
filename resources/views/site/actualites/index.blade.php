@@ -3,8 +3,28 @@
 @section('title', 'Actualités & Événements')
 
 @section('content')
+    @if ($featured && !request('course_id'))
+        {{-- DEBUG --}}
+        <div style="background:yellow;padding:10px;margin:10px 0;border:2px solid red;">
+            <p><strong>DEBUG FEATURED</strong></p>
+            <p>Image path: {{ $featured->image }}</p>
+            <p>Asset URL: {{ asset('storage/' . $featured->image) }}</p>
+            @if ($featured->image)
+                <p>
+                    File exists:
+                    {{ Storage::disk('public')->exists($featured->image) ? 'YES' : 'NO' }}
+                </p>
+            @else
+                <p>File exists: NO IMAGE</p>
+            @endif
+        </div>
+
+        <div class="news-featured">
+            <!-- ... votre code existant ... -->
+        </div>
+    @endif
     <section class="subpage-hero"
-        style="background-image:url('/images/1.png'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+        style="background-image:url('/images/18.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));">
         </div>
         <div class="container" style="position:relative;">
@@ -34,10 +54,13 @@
                     @if ($featured && !request('course_id'))
                         <div class="news-featured">
                             @if ($featured->image)
-                                <img src="{{ Storage::url($featured->image) }}" alt="{{ $featured->title }}"
-                                    class="news-featured-img">
+                                <img src="{{ asset('storage/' . $featured->image) }}" alt="{{ $featured->title }}"
+                                    style="width:100%;height:300px;object-fit:cover;display:block;border-radius:12px 12px 0 0;">
                             @else
-                                <div class="news-featured-img"></div>
+                                <div class="news-featured-img"
+                                    style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;height:300px;">
+                                    <i class="bi bi-image" style="font-size:3rem;color:#ccc;"></i>
+                                </div>
                             @endif
                             <div class="news-featured-body">
                                 <span class="news-featured-badge">À la une</span>
@@ -60,10 +83,13 @@
                                 @if ($item->id !== optional($featured)->id || request('course_id'))
                                     <div class="news-card">
                                         @if ($item->image)
-                                            <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}"
-                                                class="news-image">
+                                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
+                                                style="width:100%;height:200px;object-fit:cover;display:block;border-radius:12px 12px 0 0;">
                                         @else
-                                            <div class="news-image-placeholder"><i class="bi bi-newspaper"></i></div>
+                                            <div class="news-image-placeholder"
+                                                style="width:100%;height:200px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;">
+                                                <i class="bi bi-newspaper" style="font-size:2rem;color:#ccc;"></i>
+                                            </div>
                                         @endif
                                         <div class="news-body">
                                             <span class="news-tag">{{ $item->course->name ?? 'Actualité générale' }}</span>
@@ -89,27 +115,54 @@
                 <div>
                     <div class="news-sidebar-widget">
                         <div class="news-sidebar-header"><i class="bi bi-calendar-event"></i> Événements à venir</div>
-                        @forelse($evenements as $evenement)
-                            <div class="event-mini">
-                                <div class="event-mini-date">
-                                    <span class="day">
-                                        {{ \Carbon\Carbon::parse($evenement->start_date)->format('d') }}
-                                    </span>
-                                    <span class="month">
-                                        {{ \Carbon\Carbon::parse($evenement->start_date)->translatedFormat('M') }}
-                                    </span>
-                                </div>
-                                <div class="event-mini-info">
-                                    <strong>{{ $evenement->icon }} {{ $evenement->title }}</strong>
-                                    <span>{{ $evenement->event_time }} @if ($evenement->location)
-                                            · {{ $evenement->location }}
+                        @forelse($events as $evenement)
+                            <div class="event-mini"
+                                style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #eef2f6;">
+                                <!-- Image de l'événement -->
+                                @if ($evenement->image)
+                                    <div
+                                        style="width:55px;height:55px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#f0f4f8;border:2px solid var(--royal-blue-light);">
+                                        <img src="{{ asset('storage/' . $evenement->image) }}"
+                                            alt="{{ $evenement->title }}"
+                                            style="width:100%;height:100%;object-fit:cover;display:block;"
+                                            onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'bi bi-calendar-event\' style=\'font-size:1.5rem;color:var(--royal-blue);\'></i>';">
+                                    </div>
+                                @else
+                                    <div
+                                        style="width:55px;height:55px;border-radius:50%;background:var(--royal-blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--royal-blue);">
+                                        <i class="bi bi-calendar-event" style="font-size:1.5rem;"></i>
+                                    </div>
+                                @endif
+
+                                <!-- Informations -->
+                                <div class="event-mini-info" style="flex:1;min-width:0;">
+                                    <strong
+                                        style="display:block;font-size:0.9rem;color:var(--royal-blue);margin-bottom:2px;">
+                                        @if ($evenement->icon)
+                                            {{ $evenement->icon }}
+                                        @endif
+                                        {{ $evenement->title }}
+                                    </strong>
+                                    <span style="font-size:0.8rem;color:var(--grey-mid);display:block;">
+                                        <i class="bi bi-clock" style="font-size:0.7rem;"></i>
+                                        @if ($evenement->event_time)
+                                            {{ \Carbon\Carbon::parse($evenement->event_time)->format('H:i') }}
+                                        @elseif($evenement->start_date)
+                                            {{ \Carbon\Carbon::parse($evenement->start_date)->format('H:i') }}
+                                        @endif
+                                        @if ($evenement->location)
+                                            <i class="bi bi-geo-alt" style="font-size:0.7rem;margin-left:8px;"></i>
+                                            {{ \Str::limit($evenement->location, 15) }}
                                         @endif
                                     </span>
                                 </div>
                             </div>
                         @empty
-                            <div style="padding:16px 20px;color:var(--grey-mid);font-size:0.82rem;">Aucun événement
-                                programmé.</div>
+                            <div style="padding:16px 20px;color:var(--grey-mid);font-size:0.82rem;text-align:center;">
+                                <i class="bi bi-calendar-x"
+                                    style="display:block;font-size:2rem;margin-bottom:8px;color:#ddd;"></i>
+                                Aucun événement programmé.
+                            </div>
                         @endforelse
                     </div>
 
@@ -140,7 +193,8 @@
                     <div class="news-share-cta">
                         <i class="bi bi-megaphone-fill"></i>
                         <p>Vous avez un événement à partager ? Faites-nous parvenir les détails et nous le publierons.</p>
-                        <a href="{{ route('public.contact.index')}}" class="btn btn-primary" style="width:100%;display:block;">Nous
+                        <a href="{{ route('public.contact.index') }}" class="btn btn-primary"
+                            style="width:100%;display:block;">Nous
                             contacter <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>

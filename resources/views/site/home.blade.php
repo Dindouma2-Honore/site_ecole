@@ -36,8 +36,8 @@
                 L'Ambassadors School est un établissement d'excellence dédié à former la prochaine génération de leaders, avec un encadrement personnalisé et des méthodes pédagogiques innovantes.
             </p>
             <div class="hero-actions">
-                <a href="" class="btn btn-primary"><i class="bi bi-pencil-square"></i> S'inscrire</a>
-                <a href="" class="btn btn-outline">Découvrir</a>
+                <a href="{{ route('public.registration.create') }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i> S'inscrire</a>
+                <a href="{{ route('public.about.dossier') }}" class="btn btn-outline">Découvrir</a>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -49,7 +49,7 @@
                     <div class="hero-stat-label">Enseignants</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-num">{{ $stats['courses'] ?? 0 }}+</div>
+                    <div class="hero-stat-num">{{ $stats['classes'] ?? 0 }}+</div>
                     <div class="hero-stat-label">Formations</div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
         </div>
         <div class="stat-item">
             <span class="stat-icon"><i class="bi bi-journals"></i></span>
-            <span class="stat-number">{{ $stats['courses'] ?? 0 }}</span>
+            <span class="stat-number">{{ $stats['classes'] ?? 0 }}</span>
             <span class="stat-label">Formations</span>
         </div>
         <div class="stat-item">
@@ -145,10 +145,10 @@
             </div>
         </div>
     </div>
-</section> --}}
+</section>
 
 <!-- Why Choose Us -->
-{{-- <section class="why-section">
+<section class="why-section">
     <div class="container">
         <div class="text-center">
             <div class="section-tag" style="justify-content:center;">Pourquoi nous choisir</div>
@@ -173,10 +173,10 @@
             </div>
         </div>
     </div>
-</section> --}}
+</section>
 
 <!-- Programs -->
-{{-- <section class="programs-section">
+<section class="programs-section">
     <div class="container">
         <div class="text-center">
             <div class="section-tag" style="justify-content:center;">Nos formations</div>
@@ -184,16 +184,16 @@
             <p class="section-subtitle">Des formations de la maternelle au lycée pour un parcours d'excellence</p>
         </div>
         <div class="programs-grid">
-            @foreach($courses as $course)
+            @foreach($classes as $classe)
             <div class="program-card">
                 <div class="program-header">
-                    <div class="program-level">{{ $course->level }}</div>
-                    <h3 class="program-name">{{ $course->name }}</h3>
+                    <div class="program-level">{{ $classe->level }}</div>
+                    <h3 class="program-name">{{ $classe->name }}</h3>
                     <div class="program-ages"><i class="bi bi-book-half"></i></div>
-                    <span class="program-ages">{{ $course->level }}</span>
+                    <span class="program-ages">{{ $classe->level }}</span>
                 </div>
                 <div class="program-body">
-                    <p style="font-size:0.85rem;color:var(--grey-mid);margin-bottom:14px;">{{ $course->description }}</p>
+                    <p style="font-size:0.85rem;color:var(--grey-mid);margin-bottom:14px;">{{ $classe->description }}</p>
                     <div class="program-subjects">
                         <span class="subject-tag"><i class="bi bi-rulers"></i> Maths</span>
                         <span class="subject-tag"><i class="bi bi-book-half"></i> Français</span>
@@ -202,10 +202,10 @@
                 </div>
                 <div class="program-footer">
                     <div>
-                        <span class="program-fee">{{ number_format($course->fee, 0, ',', ' ') }} FCFA</span>
+                        <span class="program-fee">{{ number_format($classe->fee, 0, ',', ' ') }} FCFA</span>
                         <span class="program-fee-label">Par an</span>
                     </div>
-                    <a href="{{ route('registrations') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.7rem;">S'inscrire</a>
+                    <a href="{{ route('public.registration.create') }}?class_id={{ $classe->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.7rem;">S'inscrire</a>
                 </div>
             </div>
             @endforeach
@@ -233,7 +233,7 @@
 
     setInterval(() => {
         goToSlide((currentSlide + 1) % slides.length);
-    }, 2000);
+    }, 6000);
 
     indicators.forEach((ind, i) => {
         ind.addEventListener('click', () => goToSlide(i));
