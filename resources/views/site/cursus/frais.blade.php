@@ -16,7 +16,7 @@
 
 <section class="content-block" style="background:var(--off-white);">
     <div class="container">
-        @if($courses->count())
+        @if($classes->count())
         <div class="admin-panel" style="max-width:900px;margin:0 auto;">
             <table class="admin-table">
                 <thead>
@@ -28,12 +28,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($courses as $course)
+                    @foreach($classes as $classe)
                     <tr>
-                        <td><strong style="color:var(--royal-blue);">{{ $course->name }}</strong></td>
-                        <td>{{ $course->level }}</td>
-                        <td>{{ number_format($course->fee, 0, ',', ' ') }} FCFA</td>
-                        <td><a href="{{ route('public.registration.create') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:6px 14px;font-size:0.72rem;">S'inscrire</a></td>
+                        <td><strong style="color:var(--royal-blue);">{{ $classe->name }}</strong></td>
+                        <td>{{ $classe->level }}</td>
+                        <td>{{ number_format($classe->fee, 0, ',', ' ') }} FCFA</td>
+                        <td><a href="{{ route('public.registration.create') }}?class_id={{ $classe->id }}" class="btn btn-primary" style="padding:6px 14px;font-size:0.72rem;">S'inscrire</a></td>
                     </tr>
                     @endforeach
                 </tbody>

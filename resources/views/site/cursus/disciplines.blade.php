@@ -20,11 +20,8 @@
         <div class="discipline-grid">
             @foreach($disciplines as $discipline)
             <div class="discipline-card">
-                <div class="discipline-icon"><i class="bi {{ $discipline->icon ?: 'bi-book' }}"></i></div>
+                <div class="discipline-icon"><i class="bi bi-book"></i></div>
                 <div class="discipline-name">{{ $discipline->name }}</div>
-                @if($discipline->description)
-                <p class="discipline-desc">{{ $discipline->description }}</p>
-                @endif
             </div>
             @endforeach
         </div>

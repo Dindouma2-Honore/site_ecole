@@ -21,6 +21,7 @@
         <thead>
             <tr>
                 <th>Nom</th>
+                <th>Cycle</th>
                 <th>Niveau</th>
                 <th>Frais</th>
                 <th>Statut</th>
@@ -31,6 +32,7 @@
             @foreach($classes as $classe)
             <tr>
                 <td><strong>{{ $classe->name }}</strong></td>
+                <td>{{ ucfirst($classe->cycle) }}</td>
                 <td>{{ $classe->level }}</td>
                 <td>{{ number_format($classe->fee, 0, ',', ' ') }} FCFA</td>
                 <td>

@@ -3,7 +3,6 @@
 @section('title', 'Documents à Fournir')
 
 @section('content')
-
  <section class="subpage-hero"
         style="background-image:url('/images/18.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));">
@@ -18,6 +17,7 @@
         </p>
         </div>
     </section>
+
 <section style="padding:80px 0;background:var(--white);">
     <div class="container">
         <div style="max-width:900px;margin:0 auto;">
@@ -45,9 +45,7 @@
 
                 @foreach($documents as $doc)
                 <div style="background:var(--off-white);border-radius:var(--radius-md);padding:20px 24px;display:flex;gap:16px;align-items:center;border:1px solid var(--grey-light);transition:var(--transition);">
-                    <span style="font-size:2rem;flex-shrink:0;">{!! $doc['icon'] !!} </span>
-    
-
+                   <span style="font-size:2rem;flex-shrink:0;">{!! $doc['icon'] !!} </span>
                     <div style="flex:1;">
                         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
                             <h4 style="color:var(--royal-blue);font-size:1rem;">{{ $doc['name'] }}</h4>

@@ -3009,6 +3009,7 @@ nav[role="navigation"] span[aria-current="page"] span {
   color: var(--white);
   border: none;
 }
+
 /* ============================================
    SUBPAGES: HERO + SUB-NAVIGATION
    ============================================ */
@@ -3656,13 +3657,16 @@ nav[role="navigation"] span[aria-current="page"] span {
 .ea-sidebar {
   width: 270px;
   flex-shrink: 0;
-  background: var(--white);
+  background: #082246;
+  color: #fff;
   border-right: 1px solid var(--grey-light);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   height: 100vh;
   overflow-y: auto;
   padding-bottom: 20px;
+  z-index: 100;
 }
 
 .ea-sidebar-brand {
@@ -3750,6 +3754,7 @@ nav[role="navigation"] span[aria-current="page"] span {
 .ea-main {
   flex: 1;
   min-width: 0;
+  margin-left: 270px;
 }
 
 .ea-topbar {
@@ -4175,6 +4180,7 @@ nav[role="navigation"] span[aria-current="page"] span {
 @media (max-width: 900px) {
   .ea-shell { flex-direction: column; }
   .ea-sidebar { width: 100%; height: auto; position: relative; }
+  .ea-main { margin-left: 0; }
   .ea-stats-grid { grid-template-columns: 1fr 1fr; }
 }
 

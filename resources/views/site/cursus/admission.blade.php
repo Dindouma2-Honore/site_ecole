@@ -16,24 +16,24 @@
 
 <section class="content-block" style="background:var(--off-white);">
     <div class="container">
-        @if(isset($courses) && $courses->count())
+        @if($classes->count())
         <div class="class-grid">
-            @foreach($courses as $course)
+            @foreach($classes as $classe)
             <div class="class-card">
                 <div class="class-card-header">
-                    <div class="class-card-level">{{ $course->level }}</div>
-                    <div class="class-card-name">{{ $course->name }}</div>
+                    <div class="class-card-level">{{ $classe->level }}</div>
+                    <div class="class-card-name">{{ $classe->name }}</div>
                 </div>
                 <div class="class-card-body">
-                    @if($course->admission_conditions)
-                    <p>{{ $course->admission_conditions }}</p>
+                    @if($classe->admission_conditions)
+                    <p>{{ $classe->admission_conditions }}</p>
                     @else
                     <p>Conditions d'admission à venir. Merci de nous contacter pour plus d'informations.</p>
                     @endif
                 </div>
                 <div class="class-card-footer">
                     <span style="font-size:0.8rem;color:var(--grey-mid);">Places limitées</span>
-                    <a href="{{ route('public.registration.create') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;">S'inscrire</a>
+                    <a href="{{ route('public.registration.create') }}?class_id={{ $classe->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;">S'inscrire</a>
                 </div>
             </div>
             @endforeach

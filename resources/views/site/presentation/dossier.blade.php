@@ -105,7 +105,7 @@
                 <div style="color:rgba(255,255,255,0.7);font-size:0.9rem;">Offrez à votre enfant une éducation d'excellence pour un avenir sans limites.</div>
             </div>
         </div>
-        <a href="{{ route('public.registration.create')}}" class="btn btn-primary" style="white-space:nowrap;">Inscription en ligne <i class="bi bi-arrow-right"></i></a> 
+        <a href="{{ route('public.registration.create') }}" class="btn btn-primary" style="white-space:nowrap;">Inscription en ligne <i class="bi bi-arrow-right"></i></a>
     </div>
 </section>
 @endsection

@@ -42,7 +42,7 @@ class DashboardController extends Controller
 
         $coursesCount = $learner->schoolClass?->courses()->count() ?? 0;
 
-        return view('site.espace-apprenant.dashboard', compact(
+        return view('learner.dashboard', compact(
             'learner', 'todaySchedule', 'upcomingAssignments', 'average',
             'totalDue', 'totalPaid', 'announcements', 'coursesCount'
         ));

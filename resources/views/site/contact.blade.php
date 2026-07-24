@@ -3,9 +3,7 @@
 @section('title', 'Contact')
 
 @section('content')
-
-
- <section class="subpage-hero"
+<section class="subpage-hero"
         style="background-image:url('/images/18.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));">
         </div>
@@ -15,6 +13,7 @@
         <p>Une question ? Notre équipe est à votre écoute</p>
         </div>
     </section>
+
 <section class="content-block" style="background:var(--off-white);">
     <div class="container">
 
