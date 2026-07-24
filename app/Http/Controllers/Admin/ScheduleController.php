@@ -59,7 +59,7 @@ class ScheduleController extends Controller
     private function form($schedule)
     {
         $classes = SchoolClass::orderBy('order')->get();
-        $courses = $schedule->class_id ? Course::where('class_id', $schedule->class_id)->get() : collect();
+        $courses = Course::with('schoolClass')->orderBy('name')->get();
         return view('admin.schedules.form', compact('schedule', 'classes', 'courses'));
     }
 

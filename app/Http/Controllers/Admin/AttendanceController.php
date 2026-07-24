@@ -25,10 +25,13 @@ class AttendanceController extends Controller
         return view('admin.attendances.index', compact('attendances', 'classes', 'classId'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $classes = SchoolClass::orderBy('order')->get();
-        return view('admin.attendances.form', compact('classes'));
+        $classId = $request->get('class_id');
+        $learners = $classId ? Learner::where('class_id', $classId)->orderBy('last_name')->get() : collect();
+
+        return view('admin.attendances.form', compact('classes', 'classId', 'learners'));
     }
 
     public function store(Request $request)

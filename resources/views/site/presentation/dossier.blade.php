@@ -3,7 +3,7 @@
 @section('title', "Présentation de l'établissement")
 
 @section('content')
-<section class="subpage-hero" style="background-image:url('/images/1.png'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+<section class="subpage-hero" style="background-image:url('/images/20.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
     <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));"></div>
     <div class="container" style="position:relative;">
         <div class="section-tag" style="color:var(--gold);">À propos de nous</div>
@@ -105,7 +105,7 @@
                 <div style="color:rgba(255,255,255,0.7);font-size:0.9rem;">Offrez à votre enfant une éducation d'excellence pour un avenir sans limites.</div>
             </div>
         </div>
-        <a href="{{ route('public.registration.create')}}" class="btn btn-primary" style="white-space:nowrap;">Inscription en ligne <i class="bi bi-arrow-right"></i></a> 
+        <a href="{{ route('public.registration.create') }}" class="btn btn-primary" style="white-space:nowrap;">Inscription en ligne <i class="bi bi-arrow-right"></i></a>
     </div>
 </section>
 @endsection

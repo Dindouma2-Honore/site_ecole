@@ -3,7 +3,7 @@
 @section('title', 'Frais de scolarité')
 
 @section('content')
-<section class="subpage-hero" style="background-image:url('/images/formations-hero.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+<section class="subpage-hero" style="background-image:url('/images/4.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
     <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));"></div>
     <div class="container" style="position:relative;">
         <div class="section-tag" style="color:var(--gold);">Cursus scolaire</div>
@@ -16,7 +16,7 @@
 
 <section class="content-block" style="background:var(--off-white);">
     <div class="container">
-        @if($courses->count())
+        @if($classes->count())
         <div class="admin-panel" style="max-width:900px;margin:0 auto;">
             <table class="admin-table">
                 <thead>
@@ -28,12 +28,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($courses as $course)
+                    @foreach($classes as $classe)
                     <tr>
-                        <td><strong style="color:var(--royal-blue);">{{ $course->name }}</strong></td>
-                        <td>{{ $course->level }}</td>
-                        <td>{{ number_format($course->fee, 0, ',', ' ') }} FCFA</td>
-                        <td><a href="{{ route('registrations') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:6px 14px;font-size:0.72rem;">S'inscrire</a></td>
+                        <td><strong style="color:var(--royal-blue);">{{ $classe->name }}</strong></td>
+                        <td>{{ $classe->level }}</td>
+                        <td>{{ number_format($classe->fee, 0, ',', ' ') }} FCFA</td>
+                        <td><a href="{{ route('public.registration.create') }}?class_id={{ $classe->id }}" class="btn btn-primary" style="padding:6px 14px;font-size:0.72rem;">S'inscrire</a></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -3,7 +3,7 @@
 @section('title', "Conditions d'admission")
 
 @section('content')
-<section class="subpage-hero" style="background-image:url('/images/formations-hero.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
+<section class="subpage-hero" style="background-image:url('/images/20.jpg'), linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));background-size:cover;background-position:center;position:relative;">
     <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(6,18,60,0.85), rgba(10,36,99,0.55));"></div>
     <div class="container" style="position:relative;">
         <div class="section-tag" style="color:var(--gold);">Cursus scolaire</div>
@@ -16,24 +16,24 @@
 
 <section class="content-block" style="background:var(--off-white);">
     <div class="container">
-        @if($courses->count())
+        @if($classes->count())
         <div class="class-grid">
-            @foreach($courses as $course)
+            @foreach($classes as $classe)
             <div class="class-card">
                 <div class="class-card-header">
-                    <div class="class-card-level">{{ $course->level }}</div>
-                    <div class="class-card-name">{{ $course->name }}</div>
+                    <div class="class-card-level">{{ $classe->level }}</div>
+                    <div class="class-card-name">{{ $classe->name }}</div>
                 </div>
                 <div class="class-card-body">
-                    @if($course->admission_conditions)
-                    <p>{{ $course->admission_conditions }}</p>
+                    @if($classe->admission_conditions)
+                    <p>{{ $classe->admission_conditions }}</p>
                     @else
                     <p>Conditions d'admission à venir. Merci de nous contacter pour plus d'informations.</p>
                     @endif
                 </div>
                 <div class="class-card-footer">
                     <span style="font-size:0.8rem;color:var(--grey-mid);">Places limitées</span>
-                    <a href="{{ route('registrations') }}?course_id={{ $course->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;">S'inscrire</a>
+                    <a href="{{ route('public.registration.create') }}?class_id={{ $classe->id }}" class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;">S'inscrire</a>
                 </div>
             </div>
             @endforeach
